@@ -55,25 +55,45 @@
     .nav-phone{color:rgba(255,255,255,.75);font-size:14px;font-weight:500}
     .nav-phone strong{color:var(--white);font-size:16px}
 
-    /* hero */
-    .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-block:120px 80px;overflow:hidden}
-    .hero-bg{position:absolute;inset:-10%;background:linear-gradient(to bottom,rgba(0,0,0,.7) 0%,rgba(0,0,0,.5) 60%,rgba(0,0,0,.75) 100%),url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1920&q=85&auto=format&fit=crop') center/cover no-repeat;animation:kenBurns 22s ease-in-out infinite alternate;will-change:transform;z-index:0}
-    @keyframes kenBurns{0%{transform:scale(1) translate(0%,0%)}33%{transform:scale(1.08) translate(-2%,1%)}66%{transform:scale(1.05) translate(2%,-1.5%)}100%{transform:scale(1.1) translate(-1.5%,2%)}}
-    .particles{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
-    .particle{position:absolute;border-radius:50%;background:color-mix(in srgb,var(--accent) 18%,transparent);animation:floatUp linear infinite}
-    @keyframes floatUp{0%{transform:translateY(0) scale(1);opacity:0}10%{opacity:1}90%{opacity:.6}100%{transform:translateY(-100vh) scale(.4);opacity:0}}
-    .hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;will-change:transform}
-    .hero-badge{display:inline-flex;align-items:center;gap:6px;background:color-mix(in srgb,var(--accent) 15%,transparent);border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);color:var(--accent);font-size:13px;font-weight:600;padding:6px 14px;border-radius:100px;margin-bottom:20px;letter-spacing:.3px}
-    .hero h1{font-size:clamp(36px,4.5vw,54px);font-weight:800;line-height:1.1;color:var(--white);letter-spacing:-1px;margin-bottom:20px}
-    .hero h1 em{font-style:normal;color:var(--accent)}
-    .hero-sub{font-size:18px;color:rgba(255,255,255,.75);line-height:1.65;margin-bottom:36px;max-width:480px}
-    .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
-    .scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px;color:rgba(255,255,255,.45);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;animation:scrollBob 2s ease-in-out infinite}
-    @keyframes scrollBob{0%,100%{transform:translateX(-50%) translateY(0);opacity:.5}50%{transform:translateX(-50%) translateY(6px);opacity:1}}
-
-    /* hero form */
-    .hero-card{background:rgba(0,0,0,.65);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius-lg);padding:36px;backdrop-filter:blur(16px);box-shadow:0 24px 64px rgba(0,0,0,.35)}
-    .hero-card-title{font-size:13px;font-weight:600;color:var(--accent);letter-spacing:.8px;text-transform:uppercase;margin-bottom:20px}
+    /* ── split hero ─────────────────────────────────────────────── */
+    .hero-split{position:relative;display:flex;min-height:100vh;overflow:hidden}
+    .hs-left{flex:3;display:flex;flex-direction:column;justify-content:space-between;padding:100px 64px 56px;background:var(--navy);position:relative;z-index:2}
+    .hs-right{flex:2;background-size:cover;background-position:center;clip-path:polygon(100% 0,100% 0,100% 100%,100% 100%);animation:hs-reveal 1.2s cubic-bezier(.2,0,0,1) .3s forwards}
+    @keyframes hs-reveal{to{clip-path:polygon(25% 0,100% 0,100% 100%,0 100%)}}
+    .hs-header{display:flex;align-items:center;gap:14px}
+    .hs-logo-text{font-size:20px;font-weight:800;color:var(--white);line-height:1.2}
+    .hs-slogan{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.38);margin-top:3px}
+    .hs-main{flex:1;display:flex;flex-direction:column;justify-content:center;padding-block:40px 32px}
+    .hero-badge{display:inline-flex;align-items:center;gap:6px;background:color-mix(in srgb,var(--accent) 15%,transparent);border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);color:var(--accent);font-size:13px;font-weight:600;padding:6px 14px;border-radius:100px;margin-bottom:24px;letter-spacing:.3px;width:fit-content}
+    .hero-split h1{font-size:clamp(34px,4vw,54px);font-weight:800;line-height:1.1;color:var(--white);letter-spacing:-1px;margin-bottom:0}
+    .hero-split h1 em{font-style:normal;color:var(--accent)}
+    .hs-divider{height:3px;width:64px;background:linear-gradient(90deg,var(--accent),transparent);border-radius:2px;margin:24px 0}
+    .hs-sub{font-size:17px;color:rgba(255,255,255,.7);line-height:1.7;max-width:460px;margin-bottom:32px}
+    .hs-cta{font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);display:inline-flex;align-items:center;gap:10px;transition:gap .2s,color .15s;width:fit-content}
+    .hs-cta:hover{color:var(--accent-dark);gap:16px}
+    .hs-cta svg{transition:transform .2s}
+    .hs-cta:hover svg{transform:translateX(4px)}
+    .hs-footer{display:grid;grid-template-columns:1fr 1fr;gap:14px 24px;padding-top:28px;border-top:1px solid rgba(255,255,255,.08)}
+    .hs-contact{display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,.5);overflow:hidden}
+    .hs-contact svg{flex-shrink:0;color:var(--accent);width:16px;height:16px}
+    .hs-contact span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    /* entrance animations */
+    .hs-anim{opacity:0;transform:translateY(18px);animation:hs-in .55s ease-out forwards}
+    .hs-header.hs-anim{animation-delay:.2s}
+    .hs-badge-wrap.hs-anim{animation-delay:.38s}
+    .hs-h1.hs-anim{animation-delay:.52s}
+    .hs-div.hs-anim{animation-delay:.62s}
+    .hs-p.hs-anim{animation-delay:.72s}
+    .hs-cta.hs-anim{animation-delay:.86s}
+    .hs-footer.hs-anim{animation-delay:1.0s}
+    @keyframes hs-in{to{opacity:1;transform:translateY(0)}}
+    @media(prefers-reduced-motion:reduce){.hs-anim{animation:none!important;opacity:1;transform:none}.hs-right{animation:none;clip-path:polygon(25% 0,100% 0,100% 100%,0 100%)}}
+    @media(max-width:768px){.hero-split{flex-direction:column-reverse}.hs-left{padding:80px 28px 48px;flex:none}.hs-right{flex:none;min-height:260px;clip-path:none!important;animation:none}.hs-footer{grid-template-columns:1fr}}
+    /* scroll hint */
+    .scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px;color:rgba(255,255,255,.35);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;animation:scrollBob 2s ease-in-out infinite}
+    @keyframes scrollBob{0%,100%{transform:translateX(-50%) translateY(0);opacity:.4}50%{transform:translateX(-50%) translateY(6px);opacity:.8}}
+    /* legacy hero form (unused but kept for CSS ref) */
+    .hero-card{display:none}
     .form-group{margin-bottom:14px}
     .form-group label{display:block;font-size:13px;font-weight:500;color:rgba(255,255,255,.65);margin-bottom:6px}
     .form-group input,.form-group select{width:100%;padding:12px 14px;border-radius:var(--radius-sm);border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:var(--white);font-size:15px;font-family:inherit;outline:none;transition:border-color .15s;min-height:44px}
@@ -121,16 +141,25 @@
     .why-item h4{font-size:16px;font-weight:700;color:var(--white);margin-bottom:8px}
     .why-item p{font-size:14px;color:rgba(255,255,255,.55);line-height:1.6}
 
-    /* testimonials */
+    /* testimonials — 3-column infinite scroll */
     .testimonials{background:var(--gray-50)}
-    .testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-    .testimonial-card{background:var(--white);border-radius:var(--radius-md);padding:28px;box-shadow:0 1px 3px rgba(0,0,0,.08);display:flex;flex-direction:column;gap:16px;transition:box-shadow .3s,transform .3s}
-    .testimonial-card:hover{box-shadow:0 12px 40px rgba(0,0,0,.14);transform:translateY(-4px)}
-    .stars{color:var(--accent);font-size:18px;letter-spacing:2px}
-    .testimonial-text{font-size:15px;color:var(--gray-600);line-height:1.7;flex:1}
+    .testimonials-grid{display:flex;gap:20px;justify-content:center;max-height:700px;overflow:hidden;-webkit-mask-image:linear-gradient(to bottom,transparent,black 15%,black 85%,transparent);mask-image:linear-gradient(to bottom,transparent,black 15%,black 85%,transparent)}
+    .t-col{flex:1;max-width:320px;overflow:hidden}
+    .t-col-md{display:none}
+    .t-col-lg{display:none}
+    @media(min-width:768px){.t-col-md{display:block}}
+    @media(min-width:1024px){.t-col-lg{display:block}}
+    .t-scroll{display:flex;flex-direction:column;gap:20px;animation:scroll-up 15s linear infinite}
+    .t-col-md .t-scroll{animation-duration:19s}
+    .t-col-lg .t-scroll{animation-duration:17s}
+    @keyframes scroll-up{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+    .testimonials-grid:hover .t-scroll{animation-play-state:paused}
+    .testimonial-card{background:var(--white);border-radius:var(--radius-md);padding:24px;box-shadow:0 1px 3px rgba(0,0,0,.08);display:flex;flex-direction:column;gap:14px;border:1px solid var(--gray-100)}
+    .stars{color:var(--accent);font-size:16px;letter-spacing:2px}
+    .testimonial-text{font-size:14px;color:var(--gray-600);line-height:1.7;flex:1}
     .testimonial-author{display:flex;align-items:center;gap:12px}
-    .author-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--navy-light));display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:var(--white);flex-shrink:0}
-    .author-name{font-size:14px;font-weight:700;color:var(--navy)}
+    .author-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--navy-light));display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--white);flex-shrink:0}
+    .author-name{font-size:13px;font-weight:700;color:var(--navy)}
     .author-location{font-size:13px;color:var(--gray-400)}
 
     /* final cta */
@@ -163,7 +192,7 @@
     .gsap-scale{opacity:0;transform:scale(0.9)}
 
     /* ── cursor parallax will-change ───────────────────────────── */
-    .hero-bg,.hero-badge,.hero h1,.hero-sub,.hero-actions,.hero-card{will-change:transform}
+    .hs-right,#hero-heading,.hs-sub,.hs-cta{will-change:transform}
 
     /* ── service card cursor glow ──────────────────────────────── */
     .service-card{overflow:hidden}
@@ -176,9 +205,9 @@
     .final-cta{--cx:50%;--cy:50%}
     .final-cta::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;background:radial-gradient(600px circle at var(--cx) var(--cy),rgba(255,255,255,.15),transparent 55%)}
 
-    @media(max-width:900px){.hero-inner{grid-template-columns:1fr;gap:48px}.services-grid{grid-template-columns:repeat(2,1fr)}.why-grid{grid-template-columns:repeat(2,1fr)}.testimonials-grid{grid-template-columns:1fr;max-width:520px;margin-inline:auto}}
-    @media(max-width:600px){section{padding-block:56px}.hero{padding-block:100px 52px}.services-grid{grid-template-columns:1fr}.why-grid{grid-template-columns:1fr 1fr}.trust-items{gap:20px}.form-row{grid-template-columns:1fr}.nav-phone{display:none}}
-    @media(prefers-reduced-motion:reduce){.hero-bg,.particle,.scroll-hint,.btn-pulse::before,.why-orb{animation:none!important}}
+    @media(max-width:900px){.services-grid{grid-template-columns:repeat(2,1fr)}.why-grid{grid-template-columns:repeat(2,1fr)}.testimonials-grid{grid-template-columns:1fr;max-width:520px;margin-inline:auto}}
+    @media(max-width:600px){section{padding-block:56px}.services-grid{grid-template-columns:1fr}.why-grid{grid-template-columns:1fr 1fr}.trust-items{gap:20px}.nav-phone{display:none}}
+    @media(prefers-reduced-motion:reduce){.scroll-hint,.btn-pulse::before,.why-orb{animation:none!important}}
 
     /* ── custom cursor ─────────────────────────────────────────── */
     @media(pointer:fine){
@@ -246,39 +275,56 @@
     </div>
   </nav>
 
-  <section class="hero" aria-labelledby="hero-heading">
-    <div class="hero-bg" aria-hidden="true"></div>
-    <div class="particles" aria-hidden="true" id="particles"></div>
+  <section class="hero-split" aria-labelledby="hero-heading" id="quote">
 
-    <div class="container hero-inner">
-      <div>
-        <div class="hero-badge gsap-fade">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
-          Top-Rated on Google & Yelp
-        </div>
-        <h1 id="hero-heading" class="gsap-slide-up">Nashville's Fire-Grilled Flavor Done Right</h1>
-        <p class="hero-sub gsap-slide-up">Right on Broadway in the heart of Nashville, Panos Grill serves bold, Mediterranean-inspired dishes crafted from scratch with locally sourced ingredients and time-honored grilling techniques.</p>
-        <div class="hero-actions gsap-slide-up">
-          <span class="magnetic"><a href="#quote" class="btn btn-primary btn-lg btn-pulse">Make a Reservation</a></span>
-          <span class="magnetic"><a href="tel:6155559823" class="btn btn-outline btn-lg">Call (615) 555-9823</a></span>
-        </div>
-      </div>
+    <!-- Left: content panel -->
+    <div class="hs-left">
 
-      <div class="hero-card gsap-slide-right" id="quote">
-        <div class="hero-card-title">Contact Us</div>
-        <p style="font-size:15px;color:rgba(255,255,255,.65);margin-bottom:20px">We'll get back to you within a few hours.</p>
-        <form onsubmit="handleSubmit(event)" novalidate>
-          <div class="form-row">
-            <div class="form-group"><label for="fname">First name</label><input type="text" id="fname" placeholder="Mike" autocomplete="given-name" required/></div>
-            <div class="form-group"><label for="lname">Last name</label><input type="text" id="lname" placeholder="Johnson" autocomplete="family-name" required/></div>
+      <!-- Logo / business name -->
+      <header class="hs-header hs-anim">
+        <div class="logo-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1C0A00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/>
+          </svg>
+        </div>
+        <div>
+          <p class="hs-logo-text">Panos Grill</p>
+          <p class="hs-slogan">Restaurant &mdash; Nashville</p>
+        </div>
+      </header>
+
+      <!-- Main copy -->
+      <main class="hs-main">
+        <div class="hs-badge-wrap hs-anim">
+          <div class="hero-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+            Top-Rated on Google & Yelp
           </div>
-          <div class="form-group"><label for="phone">Phone number</label><input type="tel" id="fphone" placeholder="(615) 555-9823" autocomplete="tel" required/></div>
-          <div class="form-group"><label for="address">Property address</label><input type="text" id="faddress" placeholder="123 Main St" autocomplete="street-address"/></div>
-          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:4px">Send Message</button>
-        </form>
-        <p style="font-size:12px;color:rgba(255,255,255,.35);text-align:center;margin-top:12px">No spam. No obligation.</p>
-      </div>
+        </div>
+        <h1 id="hero-heading" class="hs-h1 hs-anim">Nashville's Fire-Grilled Flavor Done Right</h1>
+        <div class="hs-divider hs-div hs-anim" aria-hidden="true"></div>
+        <p class="hs-sub hs-p hs-anim">Right on Broadway in the heart of Nashville, Panos Grill serves up bold Mediterranean-inspired dishes with locally sourced ingredients and flavors you won't find anywhere else in town.</p>
+        <a href="https://calendly.com/getfoundlocal12/website-strategy-call" target="_blank" rel="noopener" class="hs-cta hs-anim" aria-label="Book a free estimate call">
+          Make a Reservation
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </main>
+
+      <!-- Contact info footer -->
+      <footer class="hs-footer hs-anim" aria-label="Contact information">
+        <div class="hs-contact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          <span>(615) 555-9823</span>
+        </div>
+        <div class="hs-contact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0116 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>412 Broadway, Nashville, TN 37203</span>
+        </div>
+      </footer>
     </div>
+
+    <!-- Right: photo with clip-path reveal -->
+    <div class="hs-right" role="img" aria-label="Panos Grill — Restaurant" style="background-image:url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1920&q=85&auto=format&fit=crop')"></div>
 
     <div class="scroll-hint" aria-hidden="true">
       <span>Scroll</span>
@@ -293,69 +339,69 @@
           <div class="trust-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
-          Tennessee Department of Health food service certified with perfect inspection scores
+          Tennessee Department of Health certified kitchen with perfect inspection scores
         </div>
 
         <div class="trust-item gsap-fade" role="listitem">
           <div class="trust-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
           </div>
-          ServSafe-certified kitchen staff and management on every shift
+          Locally sourced ingredients from Middle Tennessee farms and purveyors
         </div>
 
         <div class="trust-item gsap-fade" role="listitem">
           <div class="trust-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
           </div>
-          Transparent pricing on all catering and private event packages — no hidden fees
+          Full liquor license with trained and certified bartending staff
         </div>
 
         <div class="trust-item gsap-fade" role="listitem">
           <div class="trust-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="20,6 9,17 4,12"/></svg>
           </div>
-          Locally owned and operated on Broadway for over 8 years
+          Transparent menu pricing — no hidden fees or automatic gratuity on parties under 8
         </div>
 
         <div class="trust-item gsap-fade" role="listitem">
           <div class="trust-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
           </div>
-          Full liability insurance and TN liquor license for on- and off-premise service
+          ServSafe-certified kitchen team with allergen-awareness protocols in place
         </div>
         <div class="trust-item gsap-fade" role="listitem">
           <div class="trust-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
-          Tennessee Department of Health food service certified with perfect inspection scores
+          Tennessee Department of Health certified kitchen with perfect inspection scores
         </div>
 
         <div class="trust-item gsap-fade" role="listitem">
           <div class="trust-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
           </div>
-          ServSafe-certified kitchen staff and management on every shift
+          Locally sourced ingredients from Middle Tennessee farms and purveyors
         </div>
 
         <div class="trust-item gsap-fade" role="listitem">
           <div class="trust-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
           </div>
-          Transparent pricing on all catering and private event packages — no hidden fees
+          Full liquor license with trained and certified bartending staff
         </div>
 
         <div class="trust-item gsap-fade" role="listitem">
           <div class="trust-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="20,6 9,17 4,12"/></svg>
           </div>
-          Locally owned and operated on Broadway for over 8 years
+          Transparent menu pricing — no hidden fees or automatic gratuity on parties under 8
         </div>
 
         <div class="trust-item gsap-fade" role="listitem">
           <div class="trust-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
           </div>
-          Full liability insurance and TN liquor license for on- and off-premise service
+          ServSafe-certified kitchen team with allergen-awareness protocols in place
         </div>
       </div>
     </div>
@@ -373,37 +419,37 @@
         <article class="service-card gsap-scale">
           <div class="service-icon" aria-hidden="true">🔥</div>
           <h3>Open-Flame Grilled Entrées</h3>
-          <p>Prime cuts and fresh seafood are seared over our custom hardwood charcoal grill for authentic smoky flavor and perfect char marks.</p>
+          <p>Prime cuts and fresh seafood charred over a live hardwood grill for authentic smoky flavor and perfect sear marks.</p>
         </article>
 
         <article class="service-card gsap-scale">
           <div class="service-icon" aria-hidden="true">🥗</div>
-          <h3>Mezze & Small Plates</h3>
-          <p>Shareable starters like house-made hummus, grilled halloumi, and spanakopita are prepared à la minute using traditional Mediterranean recipes.</p>
-        </article>
-
-        <article class="service-card gsap-scale">
-          <div class="service-icon" aria-hidden="true">🍷</div>
-          <h3>Curated Wine & Cocktail Bar</h3>
-          <p>Our sommelier-selected wine list and handcrafted cocktail menu feature seasonal pairings designed to complement every dish on the menu.</p>
+          <h3>Scratch-Made Mezze & Salads</h3>
+          <p>House-prepared hummus, tzatziki, and seasonal salads built from produce sourced through local Nashville purveyors.</p>
         </article>
 
         <article class="service-card gsap-scale">
           <div class="service-icon" aria-hidden="true">🎉</div>
           <h3>Private Event & Party Dining</h3>
-          <p>Our semi-private dining space accommodates up to 60 guests with prix fixe menus, dedicated front-of-house service, and custom beverage packages.</p>
+          <p>Semi-private and full buyout options with customized prix fixe menus, dedicated event coordination, and flexible seating for up to 80 guests.</p>
         </article>
 
         <article class="service-card gsap-scale">
-          <div class="service-icon" aria-hidden="true">📦</div>
-          <h3>Catering & Large-Format Takeout</h3>
-          <p>Full-service off-premise catering with chafing dish setups, family-style platters, and individually boxed meals for corporate and social events.</p>
+          <div class="service-icon" aria-hidden="true">🥡</div>
+          <h3>Online Ordering & Curbside Pickup</h3>
+          <p>Streamlined digital ordering with real-time kitchen ticket integration so your food is hot and ready the moment you arrive.</p>
         </article>
 
         <article class="service-card gsap-scale">
-          <div class="service-icon" aria-hidden="true">🥩</div>
-          <h3>Weekend Brunch Service</h3>
-          <p>Saturday and Sunday brunch features a rotating chef's menu with shakshuka, lamb hash, house-baked pita, and bottomless mimosa service.</p>
+          <div class="service-icon" aria-hidden="true">🍷</div>
+          <h3>Curated Wine & Cocktail Program</h3>
+          <p>A rotating selection of Mediterranean wines and handcrafted cocktails featuring house-made syrups and fresh-pressed citrus.</p>
+        </article>
+
+        <article class="service-card gsap-scale">
+          <div class="service-icon" aria-hidden="true">🍽️</div>
+          <h3>Full-Service Catering</h3>
+          <p>Off-premise catering with chafing-dish service, staffed carving stations, and customizable banquet menus for corporate and social events.</p>
         </article>
       </div>
     </div>
@@ -421,9 +467,15 @@
       </div>
       <div class="why-grid">
         <div class="why-item gsap-scale">
-          <div class="why-watermark" aria-hidden="true">12,000+</div>
-          <div class="why-number" data-target-text="12,000+">12,000+</div>
-          <h4>Guests Served Annually</h4>
+          <div class="why-watermark" aria-hidden="true">12+</div>
+          <div class="why-number" data-target-text="12+">12+</div>
+          <h4>Years Serving Nashville</h4>
+        </div>
+
+        <div class="why-item gsap-scale">
+          <div class="why-watermark" aria-hidden="true">150,000+</div>
+          <div class="why-number" data-target-text="150,000+">150,000+</div>
+          <h4>Meals Served</h4>
         </div>
 
         <div class="why-item gsap-scale">
@@ -433,15 +485,9 @@
         </div>
 
         <div class="why-item gsap-scale">
-          <div class="why-watermark" aria-hidden="true">8+</div>
-          <div class="why-number" data-target-text="8+">8+</div>
-          <h4>Years on Broadway</h4>
-        </div>
-
-        <div class="why-item gsap-scale">
-          <div class="why-watermark" aria-hidden="true">95%</div>
-          <div class="why-number" data-target-text="95%">95%</div>
-          <h4>Ingredients Sourced Locally</h4>
+          <div class="why-watermark" aria-hidden="true">500+</div>
+          <div class="why-number" data-target-text="500+">500+</div>
+          <h4>Private Events Hosted</h4>
         </div>
       </div>
     </div>
@@ -455,42 +501,214 @@
         <h2 class="section-title split-heading" id="testimonials-heading">What Customers Say</h2>
         <p class="section-sub">Real reviews from real neighbors.</p>
       </div>
-      <div class="testimonials-grid">
-        <article class="testimonial-card">
+      <div class="testimonials-grid"><div class="t-col ">
+          <div class="t-scroll">
+            <article class="testimonial-card">
           <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="testimonial-text">"We booked Panos Grill for our rehearsal dinner and the lamb chops were absolutely incredible — perfectly seasoned with a beautiful char. The staff coordinated every detail, from the prix fixe menu to the wine pairings, and our guests are still talking about it weeks later."</p>
-          <div class="testimonial-author">
-            <div class="author-avatar" aria-hidden="true">DW</div>
-            <div>
-              <div class="author-name">Derek Williams</div>
-              <div class="author-location">Germantown</div>
-            </div>
-          </div>
-        </article>
-
-        <article class="testimonial-card">
-          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="testimonial-text">"My husband and I were craving real Mediterranean food and Panos delivered beyond expectations. The grilled branzino was flaky and fresh, and the mezze platter was generous enough to share. It's become our go-to date night spot whenever we head downtown."</p>
-          <div class="testimonial-author">
-            <div class="author-avatar" aria-hidden="true">MS</div>
-            <div>
-              <div class="author-name">Maria Sandoval</div>
-              <div class="author-location">East Nashville</div>
-            </div>
-          </div>
-        </article>
-
-        <article class="testimonial-card">
-          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="testimonial-text">"I ordered catering for a 40-person office lunch and the team made it seamless — everything arrived hot, well-packaged, and on time. The chicken souvlaki and house-made tzatziki were a huge hit. Hands down the best catering experience I've had in Nashville."</p>
+          <p class="testimonial-text">"We were looking for somewhere special for our anniversary and Panos Grill nailed it. The lamb chops were cooked perfectly medium-rare and the staff made us feel like VIPs. Easily the best restaurant experience we've had in Nashville."</p>
           <div class="testimonial-author">
             <div class="author-avatar" aria-hidden="true">JT</div>
             <div>
               <div class="author-name">James Thornton</div>
+              <div class="author-location">Germantown</div>
+            </div>
+          </div>
+        </article>
+<article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"I'm very picky about Mediterranean food because I grew up eating it, and Panos is the real deal. The hummus is silky smooth and the grilled octopus had that perfect char. We drive across town just for this place."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">MR</div>
+            <div>
+              <div class="author-name">Monica Reeves</div>
+              <div class="author-location">East Nashville</div>
+            </div>
+          </div>
+        </article>
+<article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"Brought a group of eight for a work dinner and the service was flawless even on a packed Friday night. Our server recommended wine pairings that were spot-on. The bill was very reasonable for the quality."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">DK</div>
+            <div>
+              <div class="author-name">David Kim</div>
               <div class="author-location">The Gulch</div>
             </div>
           </div>
         </article>
+            <article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"We were looking for somewhere special for our anniversary and Panos Grill nailed it. The lamb chops were cooked perfectly medium-rare and the staff made us feel like VIPs. Easily the best restaurant experience we've had in Nashville."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">JT</div>
+            <div>
+              <div class="author-name">James Thornton</div>
+              <div class="author-location">Germantown</div>
+            </div>
+          </div>
+        </article>
+<article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"I'm very picky about Mediterranean food because I grew up eating it, and Panos is the real deal. The hummus is silky smooth and the grilled octopus had that perfect char. We drive across town just for this place."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">MR</div>
+            <div>
+              <div class="author-name">Monica Reeves</div>
+              <div class="author-location">East Nashville</div>
+            </div>
+          </div>
+        </article>
+<article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"Brought a group of eight for a work dinner and the service was flawless even on a packed Friday night. Our server recommended wine pairings that were spot-on. The bill was very reasonable for the quality."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">DK</div>
+            <div>
+              <div class="author-name">David Kim</div>
+              <div class="author-location">The Gulch</div>
+            </div>
+          </div>
+        </article>
+          </div>
+        </div><div class="t-col t-col-md">
+          <div class="t-scroll">
+            <article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"I ordered the catering package for my daughter's graduation party and every single guest asked where the food came from. The chicken souvlaki platter was a massive hit. Panos made the whole process stress-free."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">SH</div>
+            <div>
+              <div class="author-name">Sarah Henderson</div>
+              <div class="author-location">12 South</div>
+            </div>
+          </div>
+        </article>
+<article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"The curbside pickup is incredibly convenient. I order online during my lunch break and the food is always ready on time and still piping hot. Their gyro wrap is hands down the best in Nashville."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">CP</div>
+            <div>
+              <div class="author-name">Carlos Padilla</div>
+              <div class="author-location">Sylvan Park</div>
+            </div>
+          </div>
+        </article>
+<article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"We hosted our rehearsal dinner here and the private dining room was perfect. The prix fixe menu gave our guests plenty of options and the baklava dessert was a beautiful finishing touch. Couldn't have asked for more."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">LW</div>
+            <div>
+              <div class="author-name">Lauren Wells</div>
+              <div class="author-location">Green Hills</div>
+            </div>
+          </div>
+        </article>
+            <article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"I ordered the catering package for my daughter's graduation party and every single guest asked where the food came from. The chicken souvlaki platter was a massive hit. Panos made the whole process stress-free."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">SH</div>
+            <div>
+              <div class="author-name">Sarah Henderson</div>
+              <div class="author-location">12 South</div>
+            </div>
+          </div>
+        </article>
+<article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"The curbside pickup is incredibly convenient. I order online during my lunch break and the food is always ready on time and still piping hot. Their gyro wrap is hands down the best in Nashville."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">CP</div>
+            <div>
+              <div class="author-name">Carlos Padilla</div>
+              <div class="author-location">Sylvan Park</div>
+            </div>
+          </div>
+        </article>
+<article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"We hosted our rehearsal dinner here and the private dining room was perfect. The prix fixe menu gave our guests plenty of options and the baklava dessert was a beautiful finishing touch. Couldn't have asked for more."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">LW</div>
+            <div>
+              <div class="author-name">Lauren Wells</div>
+              <div class="author-location">Green Hills</div>
+            </div>
+          </div>
+        </article>
+          </div>
+        </div><div class="t-col t-col-lg">
+          <div class="t-scroll">
+            <article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"I eat on Broadway a lot since I work nearby and Panos is my go-to. Unlike the tourist traps, this place serves genuinely excellent food at fair prices. The grilled branzino is my weekly order."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">BF</div>
+            <div>
+              <div class="author-name">Brian Foster</div>
+              <div class="author-location">Midtown</div>
+            </div>
+          </div>
+        </article>
+<article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"My husband has a gluten allergy and we usually struggle eating out. The kitchen at Panos was incredibly accommodating and clearly marked safe options for him. He said it was the first time in years he didn't feel limited at a restaurant."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">AJ</div>
+            <div>
+              <div class="author-name">Alicia Jordan</div>
+              <div class="author-location">Donelson</div>
+            </div>
+          </div>
+        </article>
+<article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"Stopped in on a whim after a show at the Ryman and it turned into one of the best meals I've had all year. The cocktail menu is creative without being pretentious, and the grilled halloumi appetizer is addictive."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">TM</div>
+            <div>
+              <div class="author-name">Tyler Mitchell</div>
+              <div class="author-location">Hillsboro Village</div>
+            </div>
+          </div>
+        </article>
+            <article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"I eat on Broadway a lot since I work nearby and Panos is my go-to. Unlike the tourist traps, this place serves genuinely excellent food at fair prices. The grilled branzino is my weekly order."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">BF</div>
+            <div>
+              <div class="author-name">Brian Foster</div>
+              <div class="author-location">Midtown</div>
+            </div>
+          </div>
+        </article>
+<article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"My husband has a gluten allergy and we usually struggle eating out. The kitchen at Panos was incredibly accommodating and clearly marked safe options for him. He said it was the first time in years he didn't feel limited at a restaurant."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">AJ</div>
+            <div>
+              <div class="author-name">Alicia Jordan</div>
+              <div class="author-location">Donelson</div>
+            </div>
+          </div>
+        </article>
+<article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"Stopped in on a whim after a show at the Ryman and it turned into one of the best meals I've had all year. The cocktail menu is creative without being pretentious, and the grilled halloumi appetizer is addictive."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">TM</div>
+            <div>
+              <div class="author-name">Tyler Mitchell</div>
+              <div class="author-location">Hillsboro Village</div>
+            </div>
+          </div>
+        </article>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -597,17 +815,9 @@
       return el.querySelectorAll('.char');
     }
 
-    // ── Hero entrance (char-split h1) ─────────────────────────────────
-    const heroH1 = document.querySelector('.hero h1');
-    const heroChars = heroH1 ? splitChars(heroH1) : [];
+    // ── Hero entrance (nav only — hero text uses CSS animations) ────────
     const EASE = 'cubic-bezier(0.165,0.84,0.44,1)';
-    const tl = gsap.timeline({delay:.1});
-    tl.to('.nav-logo,.nav-phone,.nav-cta .btn', {opacity:1, duration:.5, stagger:.08, ease:'power2.out'})
-      .to('.hero-badge', {opacity:1, y:0, duration:.55, ease:'back.out(1.4)'}, '-=.2')
-      .to(heroChars, {y:'0%', duration:.7, stagger:.028, ease:EASE}, '-=.3')
-      .to('.hero-sub', {opacity:1, y:0, duration:.55, ease:'power2.out'}, '-=.45')
-      .to('.hero-actions', {opacity:1, y:0, duration:.5, ease:'power2.out'}, '-=.35')
-      .to('.hero-card', {opacity:1, x:0, duration:.7, ease:'power3.out'}, '-=.6');
+    gsap.to('.nav-logo,.nav-phone,.nav-cta .btn', {opacity:1, duration:.5, stagger:.08, ease:'power2.out', delay:.1});
 
     // ── Section headers: char-split headings + line draw ──────────────
     document.querySelectorAll('.section-header').forEach(header=>{
@@ -647,14 +857,6 @@
         scrollTrigger:{trigger:wm, start:'top 85%'}});
     });
 
-    // ── Testimonials fan-in ───────────────────────────────────────────
-    document.querySelectorAll('.testimonial-card').forEach((card,i)=>{
-      const xFrom=i===0?-65:i===2?65:0, yFrom=i===1?55:25;
-      gsap.fromTo(card, {opacity:0, x:xFrom, y:yFrom},
-        {opacity:1, x:0, y:0, duration:.7, ease:'power3.out', delay:i*.12,
-         scrollTrigger:{trigger:'.testimonials-grid', start:'top 83%'}});
-    });
-
     // ── Magnetic buttons ──────────────────────────────────────────────
     document.querySelectorAll('.magnetic').forEach(wrap=>{
       wrap.addEventListener('mousemove', e=>{
@@ -678,16 +880,10 @@
     // ── Scroll parallax layers (skip on reduced-motion; reduce on mobile) ─
     if(!prefersReducedMotion) {
       const px = isMobile ? 0.4 : 1.0; // scale down parallax intensity on mobile
-      gsap.to('.hero-bg', {yPercent:22*px, ease:'none', scrollTrigger:{trigger:'.hero', start:'top top', end:'bottom top', scrub:true}});
-      gsap.to('.hero-inner', {yPercent:-12*px, ease:'none', scrollTrigger:{trigger:'.hero', start:'top top', end:'bottom top', scrub:1.5}});
+      gsap.to('.hs-right', {yPercent:12*px, ease:'none', scrollTrigger:{trigger:'.hero-split', start:'top top', end:'bottom top', scrub:1.5}});
       gsap.to('.why-orb:first-child', {y:-100*px, ease:'none', scrollTrigger:{trigger:'.why', start:'top bottom', end:'bottom top', scrub:true}});
       gsap.to('.why-orb:last-child',  {y:80*px,   ease:'none', scrollTrigger:{trigger:'.why', start:'top bottom', end:'bottom top', scrub:true}});
       if(!isMobile) {
-        // Testimonial depth parallax — desktop only to avoid mobile jank
-        document.querySelectorAll('.testimonial-card').forEach((card,i) => {
-          gsap.to(card, {y: i===1 ? -24 : i===0 ? 16 : 8, ease:'none',
-            scrollTrigger:{trigger:'.testimonials', start:'top bottom', end:'bottom top', scrub:1.8}});
-        });
         gsap.utils.toArray('.section-label').forEach(el => {
           gsap.to(el, {y:-18, ease:'none', scrollTrigger:{trigger:el, start:'top bottom', end:'bottom top', scrub:2}});
         });
@@ -696,14 +892,11 @@
 
     // ── Hero cursor parallax (desktop pointer only) ───────────────────
     if(!prefersReducedMotion && window.matchMedia('(pointer:fine)').matches){
-      // quickTo creates smooth-following setters — much better than gsap.to on every mousemove
       const layers = [
-        { sel:'.hero-bg',      xM: 38,  yM: 24 },
-        { sel:'.hero-badge',   xM:-10,  yM:-7  },
-        { sel:'#hero-heading', xM:-22,  yM:-15 },
-        { sel:'.hero-sub',     xM:-14,  yM:-9  },
-        { sel:'.hero-actions', xM:-8,   yM:-5  },
-        { sel:'.hero-card',    xM: 26,  yM: 17 },
+        { sel:'.hs-right',     xM: 14,  yM: 10 },
+        { sel:'#hero-heading', xM:-18,  yM:-12 },
+        { sel:'.hs-sub',       xM:-10,  yM:-6  },
+        { sel:'.hs-cta',       xM:-6,   yM:-4  },
       ];
       const setters = layers.map(l => {
         const el = document.querySelector(l.sel);
