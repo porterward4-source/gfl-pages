@@ -104,6 +104,45 @@
 
     /* trust bar */
     .trust-bar{background:var(--gray-50);border-top:1px solid var(--gray-100);border-bottom:1px solid var(--gray-100);padding-block:28px}
+
+    /* ── How It Works section ────────────────────────────────────── */
+    .hiw{background:var(--white);padding-block:88px}
+    .hiw-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;margin-top:56px}
+    /* Steps */
+    .hiw-steps{display:flex;flex-direction:column;gap:0}
+    .hiw-step{display:flex;gap:24px;padding-bottom:40px;position:relative}
+    .hiw-step:not(:last-child)::after{content:'';position:absolute;left:19px;top:52px;bottom:0;width:1.5px;background:linear-gradient(to bottom,var(--accent),transparent)}
+    .hiw-step-num{width:40px;height:40px;border-radius:50%;background:var(--accent);color:var(--navy);font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;letter-spacing:.5px}
+    .hiw-step-body{padding-top:6px}
+    .hiw-step h3{font-size:18px;font-weight:700;color:var(--navy);margin-bottom:8px;line-height:1.25}
+    .hiw-step p{font-size:15px;color:var(--gray-600);line-height:1.65}
+    /* Right column: visual card + benefits */
+    .hiw-right{display:flex;flex-direction:column;gap:24px}
+    .hiw-card{background:var(--navy);border-radius:var(--radius-lg);padding:32px;box-shadow:0 24px 56px rgba(0,0,0,.18);position:relative;overflow:hidden}
+    .hiw-card::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E") repeat;pointer-events:none}
+    .hiw-card-label{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+    .hiw-card-title{font-size:22px;font-weight:800;color:var(--white);line-height:1.2;margin-bottom:24px}
+    .hiw-card-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px}
+    .hiw-stat{text-align:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:16px 8px}
+    .hiw-stat-num{font-size:24px;font-weight:800;color:var(--accent);line-height:1}
+    .hiw-stat-label{font-size:11px;color:rgba(255,255,255,.45);margin-top:4px;letter-spacing:.3px}
+    .hiw-card-bar{height:6px;border-radius:3px;background:rgba(255,255,255,.08);overflow:hidden;margin-bottom:8px}
+    .hiw-card-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--accent),var(--accent-dark));width:0;transition:width 1.2s cubic-bezier(.22,1,.36,1)}
+    .hiw-card-bar-label{display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.4)}
+    .hiw-card-tag{display:inline-flex;align-items:center;gap:6px;background:color-mix(in srgb,var(--accent) 18%,transparent);border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);color:var(--accent);font-size:12px;font-weight:600;padding:5px 12px;border-radius:100px;margin-top:16px}
+    /* Benefits grid */
+    .hiw-benefits{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .benefit-card{background:var(--gray-50);border:1.5px solid var(--gray-100);border-radius:var(--radius-md);padding:22px;transition:border-color .2s,box-shadow .2s,transform .2s;cursor:default}
+    .benefit-card:hover{border-color:var(--accent);box-shadow:0 8px 24px rgba(0,0,0,.06);transform:translateY(-2px)}
+    .benefit-icon{font-size:26px;margin-bottom:12px;display:block;transition:transform .2s}
+    .benefit-card:hover .benefit-icon{transform:scale(1.15) rotate(-6deg)}
+    .benefit-card h4{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:5px}
+    .benefit-card p{font-size:13px;color:var(--gray-600);line-height:1.55}
+    /* Micro CTA row */
+    .hiw-cta-row{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:52px}
+    .hiw-cta-note{font-size:13px;color:var(--gray-400)}
+    @media(max-width:900px){.hiw-grid{grid-template-columns:1fr;gap:48px}.hiw-benefits{grid-template-columns:1fr 1fr}}
+    @media(max-width:600px){.hiw-benefits{grid-template-columns:1fr}.hiw-card-stats{grid-template-columns:repeat(3,1fr)}}
     .trust-items{display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap}
     .trust-item{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;color:var(--navy)}
     .trust-icon{width:36px;height:36px;background:var(--navy);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .2s}
@@ -128,7 +167,7 @@
     .service-card p{font-size:15px;color:var(--gray-600);line-height:1.6}
 
     /* why section */
-    .why{background:var(--navy);padding-block:80px;position:relative;overflow:hidden;clip-path:inset(0 100% 0 0)}
+    .why{background:var(--navy);padding-block:80px;position:relative;overflow:hidden}
     .why::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E") repeat}
     .why-orb{position:absolute;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 15%,transparent),transparent 70%);animation:orbFloat 8s ease-in-out infinite;pointer-events:none}
     @keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-20px) scale(1.1)}66%{transform:translate(-20px,15px) scale(.9)}}
@@ -185,11 +224,11 @@
     .phone-strip{background:var(--accent);text-align:center;padding:12px;font-size:15px;font-weight:600;color:var(--navy);position:relative;z-index:201}
     .phone-strip a{color:var(--navy);text-decoration:underline;text-decoration-color:rgba(0,0,0,.25)}
 
-    /* gsap initial states */
-    .gsap-fade{opacity:0}
-    .gsap-slide-up{opacity:0;transform:translateY(40px)}
-    .gsap-slide-right{opacity:0;transform:translateX(60px)}
-    .gsap-scale{opacity:0;transform:scale(0.9)}
+    /* gsap initial states — set by JS, not CSS, to avoid invisible flash if GSAP fails to load */
+    .gsap-fade{opacity:1}
+    .gsap-slide-up{opacity:1;transform:none}
+    .gsap-slide-right{opacity:1;transform:none}
+    .gsap-scale{opacity:1;transform:none}
 
     /* ── cursor parallax will-change ───────────────────────────── */
     .hs-right,#hero-heading,.hs-sub,.hs-cta{will-change:transform}
@@ -301,9 +340,9 @@
             Top-Rated on Google & Yelp
           </div>
         </div>
-        <h1 id="hero-heading" class="hs-h1 hs-anim">Nashville's Fire-Grilled Flavor Done Right</h1>
+        <h1 id="hero-heading" class="hs-h1 hs-anim">Nashville's Fire-Kissed Greek Grill on Broadway</h1>
         <div class="hs-divider hs-div hs-anim" aria-hidden="true"></div>
-        <p class="hs-sub hs-p hs-anim">Right on Broadway in the heart of Nashville, Panos Grill serves up bold Mediterranean-inspired dishes with locally sourced ingredients and flavors you won't find anywhere else in town.</p>
+        <p class="hs-sub hs-p hs-anim">Right in the heart of downtown Nashville, Panos Grill brings bold Mediterranean flavors and flame-grilled perfection to every plate — crafted from scratch with ingredients you can actually taste.</p>
         <a href="https://calendly.com/getfoundlocal12/website-strategy-call" target="_blank" rel="noopener" class="hs-cta hs-anim" aria-label="Book a free estimate call">
           Make a Reservation
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -339,75 +378,178 @@
           <div class="trust-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
-          Tennessee Department of Health certified kitchen with perfect inspection scores
+          Nashville Metro Health Department perfect inspection score
         </div>
 
         <div class="trust-item gsap-fade" role="listitem">
           <div class="trust-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
           </div>
-          Locally sourced ingredients from Middle Tennessee farms and purveyors
+          Licensed and insured for on-site and off-premise catering in Davidson County
         </div>
 
         <div class="trust-item gsap-fade" role="listitem">
           <div class="trust-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
           </div>
-          Full liquor license with trained and certified bartending staff
+          All proteins sourced from verified USDA-certified suppliers
         </div>
 
         <div class="trust-item gsap-fade" role="listitem">
           <div class="trust-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="20,6 9,17 4,12"/></svg>
           </div>
-          Transparent menu pricing — no hidden fees or automatic gratuity on parties under 8
+          Transparent menu pricing — no hidden fees or automatic gratuity on small parties
         </div>
 
         <div class="trust-item gsap-fade" role="listitem">
           <div class="trust-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
           </div>
-          ServSafe-certified kitchen team with allergen-awareness protocols in place
+          ServSafe-certified kitchen staff with allergen-aware preparation protocols
         </div>
         <div class="trust-item gsap-fade" role="listitem">
           <div class="trust-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
-          Tennessee Department of Health certified kitchen with perfect inspection scores
+          Nashville Metro Health Department perfect inspection score
         </div>
 
         <div class="trust-item gsap-fade" role="listitem">
           <div class="trust-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
           </div>
-          Locally sourced ingredients from Middle Tennessee farms and purveyors
+          Licensed and insured for on-site and off-premise catering in Davidson County
         </div>
 
         <div class="trust-item gsap-fade" role="listitem">
           <div class="trust-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
           </div>
-          Full liquor license with trained and certified bartending staff
+          All proteins sourced from verified USDA-certified suppliers
         </div>
 
         <div class="trust-item gsap-fade" role="listitem">
           <div class="trust-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="20,6 9,17 4,12"/></svg>
           </div>
-          Transparent menu pricing — no hidden fees or automatic gratuity on parties under 8
+          Transparent menu pricing — no hidden fees or automatic gratuity on small parties
         </div>
 
         <div class="trust-item gsap-fade" role="listitem">
           <div class="trust-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
           </div>
-          ServSafe-certified kitchen team with allergen-awareness protocols in place
+          ServSafe-certified kitchen staff with allergen-aware preparation protocols
         </div>
       </div>
     </div>
   </div>
 
-  <section aria-labelledby="services-heading" style="background:var(--white)">
+
+  <section class="hiw" aria-labelledby="hiw-heading">
+    <div class="container">
+      <div class="section-header gsap-slide-up">
+        <div class="section-label">How It Works</div>
+        <span class="section-line" id="line-hiw"></span>
+        <h2 class="section-title split-heading" id="hiw-heading">From Our Grill to Your Table, Effortlessly</h2>
+        <p class="section-sub">Whether you're dining in, picking up, or ordering delivery — great food should never be complicated.</p>
+      </div>
+
+      <div class="hiw-grid">
+        <!-- Steps -->
+        <div class="hiw-steps" role="list" aria-label="Process steps">
+          
+        <div class="hiw-step gsap-slide-up">
+          <div class="hiw-step-num" aria-hidden="true">01</div>
+          <div class="hiw-step-body">
+            <h3>Browse & Choose Your Favorites</h3>
+            <p>Explore our full menu online or in-house and pick from flame-grilled plates, mezze, and daily specials in seconds.</p>
+          </div>
+        </div>
+        <div class="hiw-step gsap-slide-up">
+          <div class="hiw-step-num" aria-hidden="true">02</div>
+          <div class="hiw-step-body">
+            <h3>We Prepare Everything Fresh</h3>
+            <p>Your order is cooked to order on our open grill using scratch-made sauces, hand-cut vegetables, and premium proteins.</p>
+          </div>
+        </div>
+        <div class="hiw-step gsap-slide-up">
+          <div class="hiw-step-num" aria-hidden="true">03</div>
+          <div class="hiw-step-body">
+            <h3>Enjoy a Meal Worth Remembering</h3>
+            <p>Sit back at your table, grab your pickup order, or answer your door — either way, you're eating something exceptional.</p>
+          </div>
+        </div>
+        </div>
+
+        <!-- Right: card + benefits -->
+        <div class="hiw-right">
+          <!-- Dashboard mock card -->
+          <div class="hiw-card gsap-scale" aria-hidden="true">
+            <div class="hiw-card-label">Project Overview</div>
+            <div class="hiw-card-title">Your Project, Handled End-to-End</div>
+            <div class="hiw-card-stats">
+          <div class="hiw-stat">
+            <div class="hiw-stat-num">12+</div>
+            <div class="hiw-stat-label">Years Serving Nashville</div>
+          </div>
+          <div class="hiw-stat">
+            <div class="hiw-stat-num">185,000+</div>
+            <div class="hiw-stat-label">Meals Served</div>
+          </div>
+          <div class="hiw-stat">
+            <div class="hiw-stat-num">4.7★</div>
+            <div class="hiw-stat-label">Average Customer Rating</div>
+          </div></div>
+            <div class="hiw-card-bar"><div class="hiw-card-fill" data-width="82%"></div></div>
+            <div class="hiw-card-bar-label"><span>Customer Satisfaction</span><span>98%</span></div>
+            <div class="hiw-card-tag">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+              Licensed &amp; Insured · Local Team
+            </div>
+          </div>
+
+          <!-- Benefits -->
+          <div class="hiw-benefits" role="list" aria-label="Key benefits">
+            
+        <div class="benefit-card gsap-scale">
+          <span class="benefit-icon" aria-hidden="true">🔥</span>
+          <h4>Real Flame, Real Flavor</h4>
+          <p>Every bite carries the depth that only genuine open-fire grilling can produce.</p>
+        </div>
+        <div class="benefit-card gsap-scale">
+          <span class="benefit-icon" aria-hidden="true">⏱️</span>
+          <h4>Fast Without Cutting Corners</h4>
+          <p>Lunch orders hit the table in under 15 minutes so your break stays your break.</p>
+        </div>
+        <div class="benefit-card gsap-scale">
+          <span class="benefit-icon" aria-hidden="true">🌿</span>
+          <h4>Ingredients You Can Trust</h4>
+          <p>You taste the difference when everything is sourced fresh and prepped from scratch daily.</p>
+        </div>
+        <div class="benefit-card gsap-scale">
+          <span class="benefit-icon" aria-hidden="true">🤝</span>
+          <h4>Hospitality That Feels Personal</h4>
+          <p>Every guest is treated like a regular, whether it's your first visit or your fiftieth.</p>
+        </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Micro CTA -->
+      <div class="hiw-cta-row">
+        <span class="magnetic">
+          <a href="https://calendly.com/getfoundlocal12/website-strategy-call" target="_blank" rel="noopener" class="btn btn-dark">
+            Reserve Now
+          </a>
+        </span>
+        <span class="hiw-cta-note">No obligation &mdash; takes 30 seconds</span>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="services-heading" style="background:var(--gray-50)">
     <div class="container">
       <div class="section-header gsap-slide-up">
         <div class="section-label">What We Do</div>
@@ -418,38 +560,38 @@
       <div class="services-grid">
         <article class="service-card gsap-scale">
           <div class="service-icon" aria-hidden="true">🔥</div>
-          <h3>Open-Flame Grilled Entrées</h3>
-          <p>Prime cuts and fresh seafood charred over a live hardwood grill for authentic smoky flavor and perfect sear marks.</p>
+          <h3>Wood-Fire Grilled Proteins</h3>
+          <p>Prime cuts and whole fish are seared over an open flame using traditional Greek grilling techniques for deep char and smoky flavor.</p>
         </article>
 
         <article class="service-card gsap-scale">
           <div class="service-icon" aria-hidden="true">🥗</div>
-          <h3>Scratch-Made Mezze & Salads</h3>
-          <p>House-prepared hummus, tzatziki, and seasonal salads built from produce sourced through local Nashville purveyors.</p>
+          <h3>Mezze & Shared Plates</h3>
+          <p>House-made hummus, tzatziki, spanakopita, and seasonal small plates are prepared daily using imported Mediterranean ingredients.</p>
         </article>
 
         <article class="service-card gsap-scale">
-          <div class="service-icon" aria-hidden="true">🎉</div>
-          <h3>Private Event & Party Dining</h3>
-          <p>Semi-private and full buyout options with customized prix fixe menus, dedicated event coordination, and flexible seating for up to 80 guests.</p>
-        </article>
-
-        <article class="service-card gsap-scale">
-          <div class="service-icon" aria-hidden="true">🥡</div>
-          <h3>Online Ordering & Curbside Pickup</h3>
-          <p>Streamlined digital ordering with real-time kitchen ticket integration so your food is hot and ready the moment you arrive.</p>
+          <div class="service-icon" aria-hidden="true">🥩</div>
+          <h3>Gyro & Souvlaki Counter</h3>
+          <p>Hand-stacked vertical rotisserie gyro and marinated souvlaki skewers are carved and assembled to order on fresh-baked pita.</p>
         </article>
 
         <article class="service-card gsap-scale">
           <div class="service-icon" aria-hidden="true">🍷</div>
           <h3>Curated Wine & Cocktail Program</h3>
-          <p>A rotating selection of Mediterranean wines and handcrafted cocktails featuring house-made syrups and fresh-pressed citrus.</p>
+          <p>Our beverage list features Greek and domestic wines, ouzo-based cocktails, and craft selections that complement our bold flavor profiles.</p>
         </article>
 
         <article class="service-card gsap-scale">
-          <div class="service-icon" aria-hidden="true">🍽️</div>
-          <h3>Full-Service Catering</h3>
-          <p>Off-premise catering with chafing-dish service, staffed carving stations, and customizable banquet menus for corporate and social events.</p>
+          <div class="service-icon" aria-hidden="true">🎉</div>
+          <h3>Private Dining & Event Catering</h3>
+          <p>We offer prix fixe menus, family-style banquet service, and off-site catering with full chafing dish setup for groups of 20 to 200.</p>
+        </article>
+
+        <article class="service-card gsap-scale">
+          <div class="service-icon" aria-hidden="true">📦</div>
+          <h3>Online Ordering & Delivery</h3>
+          <p>Our streamlined online ordering system offers contactless pickup and third-party delivery with packaging designed to maintain food temperature and presentation.</p>
         </article>
       </div>
     </div>
@@ -473,21 +615,21 @@
         </div>
 
         <div class="why-item gsap-scale">
-          <div class="why-watermark" aria-hidden="true">150,000+</div>
-          <div class="why-number" data-target-text="150,000+">150,000+</div>
+          <div class="why-watermark" aria-hidden="true">185,000+</div>
+          <div class="why-number" data-target-text="185,000+">185,000+</div>
           <h4>Meals Served</h4>
         </div>
 
         <div class="why-item gsap-scale">
-          <div class="why-watermark" aria-hidden="true">4.8★</div>
-          <div class="why-number" data-target-text="4.8★">4.8★</div>
-          <h4>Average Review Rating</h4>
+          <div class="why-watermark" aria-hidden="true">4.7★</div>
+          <div class="why-number" data-target-text="4.7★">4.7★</div>
+          <h4>Average Customer Rating</h4>
         </div>
 
         <div class="why-item gsap-scale">
-          <div class="why-watermark" aria-hidden="true">500+</div>
-          <div class="why-number" data-target-text="500+">500+</div>
-          <h4>Private Events Hosted</h4>
+          <div class="why-watermark" aria-hidden="true">40+</div>
+          <div class="why-number" data-target-text="40+">40+</div>
+          <h4>From-Scratch Menu Items</h4>
         </div>
       </div>
     </div>
@@ -505,66 +647,66 @@
           <div class="t-scroll">
             <article class="testimonial-card">
           <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="testimonial-text">"We were looking for somewhere special for our anniversary and Panos Grill nailed it. The lamb chops were cooked perfectly medium-rare and the staff made us feel like VIPs. Easily the best restaurant experience we've had in Nashville."</p>
+          <p class="testimonial-text">"My wife and I were craving something beyond the typical Broadway tourist traps and Panos Grill completely delivered. The lamb chops had the most incredible char, and the tzatziki was clearly homemade. We've been back three times since."</p>
           <div class="testimonial-author">
-            <div class="author-avatar" aria-hidden="true">JT</div>
+            <div class="author-avatar" aria-hidden="true">DM</div>
             <div>
-              <div class="author-name">James Thornton</div>
-              <div class="author-location">Germantown</div>
-            </div>
-          </div>
-        </article>
-<article class="testimonial-card">
-          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="testimonial-text">"I'm very picky about Mediterranean food because I grew up eating it, and Panos is the real deal. The hummus is silky smooth and the grilled octopus had that perfect char. We drive across town just for this place."</p>
-          <div class="testimonial-author">
-            <div class="author-avatar" aria-hidden="true">MR</div>
-            <div>
-              <div class="author-name">Monica Reeves</div>
+              <div class="author-name">Derek Mitchell</div>
               <div class="author-location">East Nashville</div>
             </div>
           </div>
         </article>
 <article class="testimonial-card">
           <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="testimonial-text">"Brought a group of eight for a work dinner and the service was flawless even on a packed Friday night. Our server recommended wine pairings that were spot-on. The bill was very reasonable for the quality."</p>
+          <p class="testimonial-text">"I hosted a birthday dinner in their private dining area for 25 people. The staff handled everything from a custom mezze spread to drink pairings. Zero stress on my end and everyone raved about the food."</p>
           <div class="testimonial-author">
-            <div class="author-avatar" aria-hidden="true">DK</div>
+            <div class="author-avatar" aria-hidden="true">SR</div>
             <div>
-              <div class="author-name">David Kim</div>
+              <div class="author-name">Samantha Reeves</div>
+              <div class="author-location">Germantown</div>
+            </div>
+          </div>
+        </article>
+<article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"Best gyro I've had outside of Chicago, honestly. The meat is clearly carved off an actual rotisserie, not that pressed loaf stuff. Quick service too — I was in and out on my lunch break."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">JT</div>
+            <div>
+              <div class="author-name">James Thornton</div>
               <div class="author-location">The Gulch</div>
             </div>
           </div>
         </article>
             <article class="testimonial-card">
           <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="testimonial-text">"We were looking for somewhere special for our anniversary and Panos Grill nailed it. The lamb chops were cooked perfectly medium-rare and the staff made us feel like VIPs. Easily the best restaurant experience we've had in Nashville."</p>
+          <p class="testimonial-text">"My wife and I were craving something beyond the typical Broadway tourist traps and Panos Grill completely delivered. The lamb chops had the most incredible char, and the tzatziki was clearly homemade. We've been back three times since."</p>
           <div class="testimonial-author">
-            <div class="author-avatar" aria-hidden="true">JT</div>
+            <div class="author-avatar" aria-hidden="true">DM</div>
             <div>
-              <div class="author-name">James Thornton</div>
-              <div class="author-location">Germantown</div>
-            </div>
-          </div>
-        </article>
-<article class="testimonial-card">
-          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="testimonial-text">"I'm very picky about Mediterranean food because I grew up eating it, and Panos is the real deal. The hummus is silky smooth and the grilled octopus had that perfect char. We drive across town just for this place."</p>
-          <div class="testimonial-author">
-            <div class="author-avatar" aria-hidden="true">MR</div>
-            <div>
-              <div class="author-name">Monica Reeves</div>
+              <div class="author-name">Derek Mitchell</div>
               <div class="author-location">East Nashville</div>
             </div>
           </div>
         </article>
 <article class="testimonial-card">
           <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="testimonial-text">"Brought a group of eight for a work dinner and the service was flawless even on a packed Friday night. Our server recommended wine pairings that were spot-on. The bill was very reasonable for the quality."</p>
+          <p class="testimonial-text">"I hosted a birthday dinner in their private dining area for 25 people. The staff handled everything from a custom mezze spread to drink pairings. Zero stress on my end and everyone raved about the food."</p>
           <div class="testimonial-author">
-            <div class="author-avatar" aria-hidden="true">DK</div>
+            <div class="author-avatar" aria-hidden="true">SR</div>
             <div>
-              <div class="author-name">David Kim</div>
+              <div class="author-name">Samantha Reeves</div>
+              <div class="author-location">Germantown</div>
+            </div>
+          </div>
+        </article>
+<article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"Best gyro I've had outside of Chicago, honestly. The meat is clearly carved off an actual rotisserie, not that pressed loaf stuff. Quick service too — I was in and out on my lunch break."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">JT</div>
+            <div>
+              <div class="author-name">James Thornton</div>
               <div class="author-location">The Gulch</div>
             </div>
           </div>
@@ -574,67 +716,67 @@
           <div class="t-scroll">
             <article class="testimonial-card">
           <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="testimonial-text">"I ordered the catering package for my daughter's graduation party and every single guest asked where the food came from. The chicken souvlaki platter was a massive hit. Panos made the whole process stress-free."</p>
+          <p class="testimonial-text">"We drove 20 minutes just for their grilled octopus appetizer and it was worth every mile. Perfectly tender, great smoky flavor, and the lemon vinaigrette tied it all together. Outstanding."</p>
           <div class="testimonial-author">
-            <div class="author-avatar" aria-hidden="true">SH</div>
+            <div class="author-avatar" aria-hidden="true">KW</div>
             <div>
-              <div class="author-name">Sarah Henderson</div>
-              <div class="author-location">12 South</div>
+              <div class="author-name">Karen Whitfield</div>
+              <div class="author-location">Green Hills</div>
             </div>
           </div>
         </article>
 <article class="testimonial-card">
           <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="testimonial-text">"The curbside pickup is incredibly convenient. I order online during my lunch break and the food is always ready on time and still piping hot. Their gyro wrap is hands down the best in Nashville."</p>
+          <p class="testimonial-text">"I'm pretty picky about Mediterranean food since my family is from Lebanon. Panos Grill gets it right — the ingredients taste fresh, the seasoning is authentic, and nothing feels mass-produced. Serious respect."</p>
           <div class="testimonial-author">
-            <div class="author-avatar" aria-hidden="true">CP</div>
+            <div class="author-avatar" aria-hidden="true">AL</div>
             <div>
-              <div class="author-name">Carlos Padilla</div>
+              <div class="author-name">Antonio Lewis</div>
               <div class="author-location">Sylvan Park</div>
             </div>
           </div>
         </article>
 <article class="testimonial-card">
           <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="testimonial-text">"We hosted our rehearsal dinner here and the private dining room was perfect. The prix fixe menu gave our guests plenty of options and the baklava dessert was a beautiful finishing touch. Couldn't have asked for more."</p>
+          <p class="testimonial-text">"Ordered delivery on a Friday night expecting it to arrive cold and sloppy. Wrong. Everything was perfectly packaged, still hot, and the portions were generous. The chicken souvlaki plate is my new go-to."</p>
           <div class="testimonial-author">
-            <div class="author-avatar" aria-hidden="true">LW</div>
+            <div class="author-avatar" aria-hidden="true">BH</div>
             <div>
-              <div class="author-name">Lauren Wells</div>
-              <div class="author-location">Green Hills</div>
+              <div class="author-name">Brianna Hayes</div>
+              <div class="author-location">12 South</div>
             </div>
           </div>
         </article>
             <article class="testimonial-card">
           <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="testimonial-text">"I ordered the catering package for my daughter's graduation party and every single guest asked where the food came from. The chicken souvlaki platter was a massive hit. Panos made the whole process stress-free."</p>
+          <p class="testimonial-text">"We drove 20 minutes just for their grilled octopus appetizer and it was worth every mile. Perfectly tender, great smoky flavor, and the lemon vinaigrette tied it all together. Outstanding."</p>
           <div class="testimonial-author">
-            <div class="author-avatar" aria-hidden="true">SH</div>
+            <div class="author-avatar" aria-hidden="true">KW</div>
             <div>
-              <div class="author-name">Sarah Henderson</div>
-              <div class="author-location">12 South</div>
+              <div class="author-name">Karen Whitfield</div>
+              <div class="author-location">Green Hills</div>
             </div>
           </div>
         </article>
 <article class="testimonial-card">
           <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="testimonial-text">"The curbside pickup is incredibly convenient. I order online during my lunch break and the food is always ready on time and still piping hot. Their gyro wrap is hands down the best in Nashville."</p>
+          <p class="testimonial-text">"I'm pretty picky about Mediterranean food since my family is from Lebanon. Panos Grill gets it right — the ingredients taste fresh, the seasoning is authentic, and nothing feels mass-produced. Serious respect."</p>
           <div class="testimonial-author">
-            <div class="author-avatar" aria-hidden="true">CP</div>
+            <div class="author-avatar" aria-hidden="true">AL</div>
             <div>
-              <div class="author-name">Carlos Padilla</div>
+              <div class="author-name">Antonio Lewis</div>
               <div class="author-location">Sylvan Park</div>
             </div>
           </div>
         </article>
 <article class="testimonial-card">
           <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="testimonial-text">"We hosted our rehearsal dinner here and the private dining room was perfect. The prix fixe menu gave our guests plenty of options and the baklava dessert was a beautiful finishing touch. Couldn't have asked for more."</p>
+          <p class="testimonial-text">"Ordered delivery on a Friday night expecting it to arrive cold and sloppy. Wrong. Everything was perfectly packaged, still hot, and the portions were generous. The chicken souvlaki plate is my new go-to."</p>
           <div class="testimonial-author">
-            <div class="author-avatar" aria-hidden="true">LW</div>
+            <div class="author-avatar" aria-hidden="true">BH</div>
             <div>
-              <div class="author-name">Lauren Wells</div>
-              <div class="author-location">Green Hills</div>
+              <div class="author-name">Brianna Hayes</div>
+              <div class="author-location">12 South</div>
             </div>
           </div>
         </article>
@@ -643,67 +785,67 @@
           <div class="t-scroll">
             <article class="testimonial-card">
           <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="testimonial-text">"I eat on Broadway a lot since I work nearby and Panos is my go-to. Unlike the tourist traps, this place serves genuinely excellent food at fair prices. The grilled branzino is my weekly order."</p>
+          <p class="testimonial-text">"Took a date here and the atmosphere was perfect — not too loud, great lighting, and the cocktail menu was creative without being pretentious. The server recommended the Mediterranean sea bass and it was phenomenal."</p>
           <div class="testimonial-author">
-            <div class="author-avatar" aria-hidden="true">BF</div>
+            <div class="author-avatar" aria-hidden="true">CP</div>
             <div>
-              <div class="author-name">Brian Foster</div>
-              <div class="author-location">Midtown</div>
+              <div class="author-name">Chris Pennington</div>
+              <div class="author-location">Midtown Nashville</div>
             </div>
           </div>
         </article>
 <article class="testimonial-card">
           <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="testimonial-text">"My husband has a gluten allergy and we usually struggle eating out. The kitchen at Panos was incredibly accommodating and clearly marked safe options for him. He said it was the first time in years he didn't feel limited at a restaurant."</p>
+          <p class="testimonial-text">"As someone with celiac, finding safe restaurant food is a nightmare. Their staff knew exactly which dishes were gluten-free without me having to interrogate them. I felt safe eating there, which is rare and wonderful."</p>
           <div class="testimonial-author">
-            <div class="author-avatar" aria-hidden="true">AJ</div>
+            <div class="author-avatar" aria-hidden="true">NJ</div>
             <div>
-              <div class="author-name">Alicia Jordan</div>
+              <div class="author-name">Natalie Jordan</div>
               <div class="author-location">Donelson</div>
             </div>
           </div>
         </article>
 <article class="testimonial-card">
           <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="testimonial-text">"Stopped in on a whim after a show at the Ryman and it turned into one of the best meals I've had all year. The cocktail menu is creative without being pretentious, and the grilled halloumi appetizer is addictive."</p>
+          <p class="testimonial-text">"We catered our office holiday party through Panos Grill and fed 60 people for a very reasonable price. The pastitsio and grilled chicken trays were demolished in minutes. Already booked them again for spring."</p>
           <div class="testimonial-author">
-            <div class="author-avatar" aria-hidden="true">TM</div>
+            <div class="author-avatar" aria-hidden="true">MW</div>
             <div>
-              <div class="author-name">Tyler Mitchell</div>
-              <div class="author-location">Hillsboro Village</div>
+              <div class="author-name">Marcus Williams</div>
+              <div class="author-location">Bellevue</div>
             </div>
           </div>
         </article>
             <article class="testimonial-card">
           <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="testimonial-text">"I eat on Broadway a lot since I work nearby and Panos is my go-to. Unlike the tourist traps, this place serves genuinely excellent food at fair prices. The grilled branzino is my weekly order."</p>
+          <p class="testimonial-text">"Took a date here and the atmosphere was perfect — not too loud, great lighting, and the cocktail menu was creative without being pretentious. The server recommended the Mediterranean sea bass and it was phenomenal."</p>
           <div class="testimonial-author">
-            <div class="author-avatar" aria-hidden="true">BF</div>
+            <div class="author-avatar" aria-hidden="true">CP</div>
             <div>
-              <div class="author-name">Brian Foster</div>
-              <div class="author-location">Midtown</div>
+              <div class="author-name">Chris Pennington</div>
+              <div class="author-location">Midtown Nashville</div>
             </div>
           </div>
         </article>
 <article class="testimonial-card">
           <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="testimonial-text">"My husband has a gluten allergy and we usually struggle eating out. The kitchen at Panos was incredibly accommodating and clearly marked safe options for him. He said it was the first time in years he didn't feel limited at a restaurant."</p>
+          <p class="testimonial-text">"As someone with celiac, finding safe restaurant food is a nightmare. Their staff knew exactly which dishes were gluten-free without me having to interrogate them. I felt safe eating there, which is rare and wonderful."</p>
           <div class="testimonial-author">
-            <div class="author-avatar" aria-hidden="true">AJ</div>
+            <div class="author-avatar" aria-hidden="true">NJ</div>
             <div>
-              <div class="author-name">Alicia Jordan</div>
+              <div class="author-name">Natalie Jordan</div>
               <div class="author-location">Donelson</div>
             </div>
           </div>
         </article>
 <article class="testimonial-card">
           <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="testimonial-text">"Stopped in on a whim after a show at the Ryman and it turned into one of the best meals I've had all year. The cocktail menu is creative without being pretentious, and the grilled halloumi appetizer is addictive."</p>
+          <p class="testimonial-text">"We catered our office holiday party through Panos Grill and fed 60 people for a very reasonable price. The pastitsio and grilled chicken trays were demolished in minutes. Already booked them again for spring."</p>
           <div class="testimonial-author">
-            <div class="author-avatar" aria-hidden="true">TM</div>
+            <div class="author-avatar" aria-hidden="true">MW</div>
             <div>
-              <div class="author-name">Tyler Mitchell</div>
-              <div class="author-location">Hillsboro Village</div>
+              <div class="author-name">Marcus Williams</div>
+              <div class="author-location">Bellevue</div>
             </div>
           </div>
         </article>
@@ -753,6 +895,14 @@
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((t) => lenis.raf(t * 1000));
     gsap.ticker.lagSmoothing(0);
+
+    // ── Set GSAP initial states in JS (not CSS) so elements are visible if GSAP fails ─
+    if(!prefersReducedMotion){
+      gsap.set('.gsap-fade', {opacity:0});
+      gsap.set('.gsap-slide-up', {opacity:0, y:40});
+      gsap.set('.gsap-slide-right', {opacity:0, x:60});
+      gsap.set('.gsap-scale', {opacity:0, scale:0.9});
+    }
 
     // smooth-scroll anchor links
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
@@ -832,6 +982,27 @@
       if(sub)     htl.fromTo(sub,   {opacity:0, y:16},  {opacity:1, y:0, duration:.5, ease:'power2.out'}, '-=.35');
     });
     gsap.utils.toArray('.section-header').forEach(el=>gsap.set(el,{opacity:1,y:0}));
+
+    // ── How It Works: steps stagger + card fill bar ──────────────────
+    document.querySelectorAll('.hiw-step').forEach((step,i)=>{
+      gsap.fromTo(step, {opacity:0, x:-32}, {opacity:1, x:0, duration:.6, ease:'power3.out',
+        delay:i*.12, scrollTrigger:{trigger:'.hiw-steps', start:'top 82%'}});
+    });
+    const hiwCard = document.querySelector('.hiw-card');
+    if(hiwCard){
+      gsap.fromTo(hiwCard, {opacity:0, y:28, scale:.96}, {opacity:1, y:0, scale:1, duration:.7, ease:'power3.out',
+        scrollTrigger:{trigger:hiwCard, start:'top 85%'}});
+    }
+    document.querySelectorAll('.benefit-card').forEach((card,i)=>{
+      gsap.fromTo(card, {opacity:0, y:20}, {opacity:1, y:0, duration:.5, ease:'power2.out',
+        delay:i*.08, scrollTrigger:{trigger:'.hiw-benefits', start:'top 85%'}});
+    });
+    // Animate the fill bar when it enters view
+    const fill = document.querySelector('.hiw-card-fill');
+    if(fill){
+      ScrollTrigger.create({trigger:fill, start:'top 85%', once:true,
+        onEnter:()=>{ fill.style.width = fill.dataset.width || '82%'; }});
+    }
 
     // ── Service cards: alternating + multi-axis hover ─────────────────
     document.querySelectorAll('.service-card').forEach((card,i)=>{
