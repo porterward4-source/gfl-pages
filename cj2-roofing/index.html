@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CJ2 Roofing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy:       #0F2240;
+      --navy-light: #1A3A6B;
+      --accent:     #F59E0B;
+      --accent-dark:#D97706;
+      --white: #FFFFFF; --gray-50: #F9FAFB; --gray-100: #F3F4F6;
+      --gray-400: #9CA3AF; --gray-600: #4B5563; --gray-800: #1F2937;
+      --radius-sm: 6px; --radius-md: 12px; --radius-lg: 20px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:auto}
+    body{font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.6;color:var(--gray-800);background:var(--white);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    .container{width:100%;max-width:1100px;margin-inline:auto;padding-inline:24px}
+    section{padding-block:80px}
+
+    /* scroll progress */
+    #sp{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent-dark));z-index:999;box-shadow:0 0 8px color-mix(in srgb,var(--accent) 60%,transparent)}
+
+    /* buttons */
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:var(--radius-sm);font-size:16px;font-weight:600;cursor:pointer;border:2px solid transparent;transition:background .18s,transform .12s,box-shadow .18s;min-height:48px;white-space:nowrap;position:relative;overflow:hidden}
+    .btn:hover{transform:translateY(-2px)}
+    .btn:active{transform:translateY(0)}
+    .btn-primary{background:var(--accent);color:var(--navy)}
+    .btn-primary:hover{background:var(--accent-dark);box-shadow:0 6px 24px color-mix(in srgb,var(--accent) 40%,transparent)}
+    .btn-outline{background:transparent;color:var(--white);border-color:rgba(255,255,255,.45)}
+    .btn-outline:hover{background:rgba(255,255,255,.1);border-color:var(--white)}
+    .btn-lg{padding:16px 36px;font-size:17px}
+    .btn-dark{background:var(--navy);color:var(--white)}
+    .btn-dark:hover{background:var(--navy-light);box-shadow:0 6px 24px rgba(0,0,0,.35)}
+    .btn-woutline{background:transparent;color:var(--navy);border-color:rgba(0,0,0,.2)}
+    .btn-woutline:hover{background:rgba(0,0,0,.06);border-color:var(--navy)}
+    .btn-pulse::before{content:'';position:absolute;inset:-4px;border-radius:10px;border:2px solid var(--accent);animation:pulseRing 2s ease-out infinite}
+    @keyframes pulseRing{0%{opacity:.6;transform:scale(1)}70%,100%{opacity:0;transform:scale(1.12)}}
+
+    /* nav */
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;transition:background .3s,box-shadow .3s}
+    nav.scrolled{background:rgba(15,34,64,.96);backdrop-filter:blur(12px);box-shadow:0 1px 24px rgba(0,0,0,.25)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding-block:18px}
+    .nav-logo{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800;color:var(--white);letter-spacing:-.3px}
+    .nav-logo span{color:var(--accent)}
+    .logo-icon{width:36px;height:36px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;transition:transform .2s}
+    .nav-logo:hover .logo-icon{transform:rotate(-8deg) scale(1.08)}
+    .nav-cta{display:flex;align-items:center;gap:16px}
+    .nav-phone{color:rgba(255,255,255,.75);font-size:14px;font-weight:500}
+    .nav-phone strong{color:var(--white);font-size:16px}
+
+    /* ── split hero ─────────────────────────────────────────────── */
+    .hero-split{position:relative;display:flex;min-height:100vh;overflow:hidden}
+    .hs-left{flex:3;display:flex;flex-direction:column;justify-content:space-between;padding:100px 64px 56px;background:var(--navy);position:relative;z-index:2}
+    .hs-right{flex:2;background-size:cover;background-position:center;clip-path:polygon(100% 0,100% 0,100% 100%,100% 100%);animation:hs-reveal 1.2s cubic-bezier(.2,0,0,1) .3s forwards}
+    @keyframes hs-reveal{to{clip-path:polygon(25% 0,100% 0,100% 100%,0 100%)}}
+    .hs-header{display:flex;align-items:center;gap:14px}
+    .hs-logo-text{font-size:20px;font-weight:800;color:var(--white);line-height:1.2}
+    .hs-slogan{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.38);margin-top:3px}
+    .hs-main{flex:1;display:flex;flex-direction:column;justify-content:center;padding-block:40px 32px}
+    .hero-badge{display:inline-flex;align-items:center;gap:6px;background:color-mix(in srgb,var(--accent) 15%,transparent);border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);color:var(--accent);font-size:13px;font-weight:600;padding:6px 14px;border-radius:100px;margin-bottom:24px;letter-spacing:.3px;width:fit-content}
+    .hero-split h1{font-size:clamp(34px,4vw,54px);font-weight:800;line-height:1.1;color:var(--white);letter-spacing:-1px;margin-bottom:0}
+    .hero-split h1 em{font-style:normal;color:var(--accent)}
+    .hs-divider{height:3px;width:64px;background:linear-gradient(90deg,var(--accent),transparent);border-radius:2px;margin:24px 0}
+    .hs-sub{font-size:17px;color:rgba(255,255,255,.7);line-height:1.7;max-width:460px;margin-bottom:32px}
+    .hs-cta{font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);display:inline-flex;align-items:center;gap:10px;transition:gap .2s,color .15s;width:fit-content}
+    .hs-cta:hover{color:var(--accent-dark);gap:16px}
+    .hs-cta svg{transition:transform .2s}
+    .hs-cta:hover svg{transform:translateX(4px)}
+    .hs-footer{display:grid;grid-template-columns:1fr 1fr;gap:14px 24px;padding-top:28px;border-top:1px solid rgba(255,255,255,.08)}
+    .hs-contact{display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,.5);overflow:hidden}
+    .hs-contact svg{flex-shrink:0;color:var(--accent);width:16px;height:16px}
+    .hs-contact span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    /* entrance animations */
+    .hs-anim{opacity:0;transform:translateY(18px);animation:hs-in .55s ease-out forwards}
+    .hs-header.hs-anim{animation-delay:.2s}
+    .hs-badge-wrap.hs-anim{animation-delay:.38s}
+    .hs-h1.hs-anim{animation-delay:.52s}
+    .hs-div.hs-anim{animation-delay:.62s}
+    .hs-p.hs-anim{animation-delay:.72s}
+    .hs-cta.hs-anim{animation-delay:.86s}
+    .hs-footer.hs-anim{animation-delay:1.0s}
+    @keyframes hs-in{to{opacity:1;transform:translateY(0)}}
+    @media(prefers-reduced-motion:reduce){.hs-anim{animation:none!important;opacity:1;transform:none}.hs-right{animation:none;clip-path:polygon(25% 0,100% 0,100% 100%,0 100%)}}
+    @media(max-width:768px){.hero-split{flex-direction:column-reverse}.hs-left{padding:80px 28px 48px;flex:none}.hs-right{flex:none;min-height:260px;clip-path:none!important;animation:none}.hs-footer{grid-template-columns:1fr}}
+    /* scroll hint */
+    .scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px;color:rgba(255,255,255,.35);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;animation:scrollBob 2s ease-in-out infinite}
+    @keyframes scrollBob{0%,100%{transform:translateX(-50%) translateY(0);opacity:.4}50%{transform:translateX(-50%) translateY(6px);opacity:.8}}
+    /* legacy hero form (unused but kept for CSS ref) */
+    .hero-card{display:none}
+    .form-group{margin-bottom:14px}
+    .form-group label{display:block;font-size:13px;font-weight:500;color:rgba(255,255,255,.65);margin-bottom:6px}
+    .form-group input,.form-group select{width:100%;padding:12px 14px;border-radius:var(--radius-sm);border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:var(--white);font-size:15px;font-family:inherit;outline:none;transition:border-color .15s;min-height:44px}
+    .form-group input::placeholder{color:rgba(255,255,255,.3)}
+    .form-group input:focus,.form-group select:focus{border-color:var(--accent)}
+    .form-group select option{background:var(--navy);color:var(--white)}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+    /* trust bar */
+    .trust-bar{background:var(--gray-50);border-top:1px solid var(--gray-100);border-bottom:1px solid var(--gray-100);padding-block:28px}
+
+    /* ── How It Works section ────────────────────────────────────── */
+    .hiw{background:var(--white);padding-block:88px}
+    .hiw-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;margin-top:56px}
+    /* Steps */
+    .hiw-steps{display:flex;flex-direction:column;gap:0}
+    .hiw-step{display:flex;gap:24px;padding-bottom:40px;position:relative}
+    .hiw-step:not(:last-child)::after{content:'';position:absolute;left:19px;top:52px;bottom:0;width:1.5px;background:linear-gradient(to bottom,var(--accent),transparent)}
+    .hiw-step-num{width:40px;height:40px;border-radius:50%;background:var(--accent);color:var(--navy);font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;letter-spacing:.5px}
+    .hiw-step-body{padding-top:6px}
+    .hiw-step h3{font-size:18px;font-weight:700;color:var(--navy);margin-bottom:8px;line-height:1.25}
+    .hiw-step p{font-size:15px;color:var(--gray-600);line-height:1.65}
+    /* Right column: visual card + benefits */
+    .hiw-right{display:flex;flex-direction:column;gap:24px}
+    .hiw-card{background:var(--navy);border-radius:var(--radius-lg);padding:32px;box-shadow:0 24px 56px rgba(0,0,0,.18);position:relative;overflow:hidden}
+    .hiw-card::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E") repeat;pointer-events:none}
+    .hiw-card-label{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+    .hiw-card-title{font-size:22px;font-weight:800;color:var(--white);line-height:1.2;margin-bottom:24px}
+    .hiw-card-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px}
+    .hiw-stat{text-align:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:16px 8px}
+    .hiw-stat-num{font-size:24px;font-weight:800;color:var(--accent);line-height:1}
+    .hiw-stat-label{font-size:11px;color:rgba(255,255,255,.45);margin-top:4px;letter-spacing:.3px}
+    .hiw-card-bar{height:6px;border-radius:3px;background:rgba(255,255,255,.08);overflow:hidden;margin-bottom:8px}
+    .hiw-card-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--accent),var(--accent-dark));width:0;transition:width 1.2s cubic-bezier(.22,1,.36,1)}
+    .hiw-card-bar-label{display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.4)}
+    .hiw-card-tag{display:inline-flex;align-items:center;gap:6px;background:color-mix(in srgb,var(--accent) 18%,transparent);border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);color:var(--accent);font-size:12px;font-weight:600;padding:5px 12px;border-radius:100px;margin-top:16px}
+    /* Benefits grid */
+    .hiw-benefits{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .benefit-card{background:var(--gray-50);border:1.5px solid var(--gray-100);border-radius:var(--radius-md);padding:22px;transition:border-color .2s,box-shadow .2s,transform .2s;cursor:default}
+    .benefit-card:hover{border-color:var(--accent);box-shadow:0 8px 24px rgba(0,0,0,.06);transform:translateY(-2px)}
+    .benefit-icon{font-size:26px;margin-bottom:12px;display:block;transition:transform .2s}
+    .benefit-card:hover .benefit-icon{transform:scale(1.15) rotate(-6deg)}
+    .benefit-card h4{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:5px}
+    .benefit-card p{font-size:13px;color:var(--gray-600);line-height:1.55}
+    /* Micro CTA row */
+    .hiw-cta-row{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:52px}
+    .hiw-cta-note{font-size:13px;color:var(--gray-400)}
+    @media(max-width:900px){.hiw-grid{grid-template-columns:1fr;gap:48px}.hiw-benefits{grid-template-columns:1fr 1fr}}
+    @media(max-width:600px){.hiw-benefits{grid-template-columns:1fr}.hiw-card-stats{grid-template-columns:repeat(3,1fr)}}
+    .trust-items{display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap}
+    .trust-item{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;color:var(--navy)}
+    .trust-icon{width:36px;height:36px;background:var(--navy);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .2s}
+    .trust-item:hover .trust-icon{transform:scale(1.12) rotate(-5deg)}
+
+    /* section labels */
+    .section-label{font-size:13px;font-weight:600;color:var(--accent-dark);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px}
+    .section-title{font-size:clamp(28px,3.5vw,40px);font-weight:800;color:var(--navy);letter-spacing:-.5px;line-height:1.15;margin-bottom:16px}
+    .section-sub{font-size:17px;color:var(--gray-600);max-width:520px;line-height:1.65}
+    .section-header{margin-bottom:52px}
+    .section-line{display:block;height:3px;width:0;background:linear-gradient(90deg,var(--accent),transparent);border-radius:2px;margin-bottom:16px}
+    .word{display:inline-block;overflow:hidden}
+    .word-inner{display:inline-block;transform:translateY(110%)}
+
+    /* services */
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    .service-card{background:var(--white);border:1.5px solid var(--gray-100);border-radius:var(--radius-md);padding:32px;box-shadow:0 1px 3px rgba(0,0,0,.08);transition:box-shadow .3s,transform .3s,border-color .3s;transform-style:preserve-3d;will-change:transform}
+    .service-card:hover{box-shadow:0 16px 48px rgba(0,0,0,.10);border-color:var(--accent)}
+    .service-icon{font-size:32px;margin-bottom:16px;display:block;transition:transform .3s}
+    .service-card:hover .service-icon{transform:scale(1.15) rotate(-5deg)}
+    .service-card h3{font-size:18px;font-weight:700;color:var(--navy);margin-bottom:10px}
+    .service-card p{font-size:15px;color:var(--gray-600);line-height:1.6}
+
+    /* why section */
+    .why{background:var(--navy);padding-block:80px;position:relative;overflow:hidden}
+    .why::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E") repeat}
+    .why-orb{position:absolute;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 15%,transparent),transparent 70%);animation:orbFloat 8s ease-in-out infinite;pointer-events:none}
+    @keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-20px) scale(1.1)}66%{transform:translate(-20px,15px) scale(.9)}}
+    .why .section-title{color:var(--white)}
+    .why .section-sub{color:rgba(255,255,255,.65)}
+    .why .section-label{color:var(--accent)}
+    .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:52px;position:relative;z-index:1}
+    .why-item{text-align:center}
+    .why-number{font-size:48px;font-weight:800;color:var(--accent);line-height:1;margin-bottom:8px}
+    .why-item h4{font-size:16px;font-weight:700;color:var(--white);margin-bottom:8px}
+    .why-item p{font-size:14px;color:rgba(255,255,255,.55);line-height:1.6}
+
+    /* testimonials — 3-column infinite scroll */
+    .testimonials{background:var(--gray-50)}
+    .testimonials-grid{display:flex;gap:20px;justify-content:center;max-height:700px;overflow:hidden;-webkit-mask-image:linear-gradient(to bottom,transparent,black 15%,black 85%,transparent);mask-image:linear-gradient(to bottom,transparent,black 15%,black 85%,transparent)}
+    .t-col{flex:1;max-width:320px;overflow:hidden}
+    .t-col-md{display:none}
+    .t-col-lg{display:none}
+    @media(min-width:768px){.t-col-md{display:block}}
+    @media(min-width:1024px){.t-col-lg{display:block}}
+    .t-scroll{display:flex;flex-direction:column;gap:20px;animation:scroll-up 15s linear infinite}
+    .t-col-md .t-scroll{animation-duration:19s}
+    .t-col-lg .t-scroll{animation-duration:17s}
+    @keyframes scroll-up{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+    .testimonials-grid:hover .t-scroll{animation-play-state:paused}
+    .testimonial-card{background:var(--white);border-radius:var(--radius-md);padding:24px;box-shadow:0 1px 3px rgba(0,0,0,.08);display:flex;flex-direction:column;gap:14px;border:1px solid var(--gray-100)}
+    .stars{color:var(--accent);font-size:16px;letter-spacing:2px}
+    .testimonial-text{font-size:14px;color:var(--gray-600);line-height:1.7;flex:1}
+    .testimonial-author{display:flex;align-items:center;gap:12px}
+    .author-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--navy-light));display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--white);flex-shrink:0}
+    .author-name{font-size:13px;font-weight:700;color:var(--navy)}
+    .author-location{font-size:13px;color:var(--gray-400)}
+
+    /* final cta */
+    .final-cta{background:linear-gradient(135deg,var(--accent) 0%,var(--accent-dark) 100%);padding-block:80px;text-align:center;position:relative;overflow:hidden}
+    .final-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 120%,rgba(255,255,255,.12) 0%,transparent 70%)}
+    .final-cta h2{font-size:clamp(30px,4vw,44px);font-weight:800;color:var(--navy);letter-spacing:-.5px;margin-bottom:16px;line-height:1.15;position:relative}
+    .final-cta p{font-size:18px;color:rgba(0,0,0,.6);margin-bottom:36px;position:relative}
+    .cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative}
+
+    /* footer */
+    footer{background:var(--gray-800);padding-block:40px}
+    .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+    .footer-logo{font-size:18px;font-weight:800;color:var(--white)}
+    .footer-logo span{color:var(--accent)}
+    .footer-links{display:flex;gap:24px}
+    .footer-links a{font-size:14px;color:rgba(255,255,255,.5);transition:color .15s}
+    .footer-links a:hover{color:var(--white)}
+    .footer-copy{font-size:13px;color:rgba(255,255,255,.3)}
+    .footer-claim{font-size:13px;color:rgba(255,255,255,.45);margin-top:16px;width:100%;text-align:center}
+    .footer-claim a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+
+    /* phone strip */
+    .phone-strip{background:var(--accent);text-align:center;padding:12px;font-size:15px;font-weight:600;color:var(--navy);position:relative;z-index:201}
+    .phone-strip a{color:var(--navy);text-decoration:underline;text-decoration-color:rgba(0,0,0,.25)}
+
+    /* gsap initial states — set by JS, not CSS, to avoid invisible flash if GSAP fails to load */
+    .gsap-fade{opacity:1}
+    .gsap-slide-up{opacity:1;transform:none}
+    .gsap-slide-right{opacity:1;transform:none}
+    .gsap-scale{opacity:1;transform:none}
+
+    /* ── cursor parallax will-change ───────────────────────────── */
+    .hs-right,#hero-heading,.hs-sub,.hs-cta{will-change:transform}
+
+    /* ── service card cursor glow ──────────────────────────────── */
+    .service-card{overflow:hidden}
+    .service-card::after{content:'';position:absolute;inset:0;border-radius:var(--radius-md);background:radial-gradient(200px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.09),transparent 70%);opacity:0;transition:opacity .3s;pointer-events:none;z-index:10}
+    .service-card:hover::after{opacity:1}
+
+    /* ── dark section cursor spotlight ────────────────────────── */
+    .why{--cx:50%;--cy:50%}
+    .why::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;background:radial-gradient(700px circle at var(--cx) var(--cy),rgba(255,255,255,.045),transparent 55%)}
+    .final-cta{--cx:50%;--cy:50%}
+    .final-cta::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;background:radial-gradient(600px circle at var(--cx) var(--cy),rgba(255,255,255,.15),transparent 55%)}
+
+    @media(max-width:900px){.services-grid{grid-template-columns:repeat(2,1fr)}.why-grid{grid-template-columns:repeat(2,1fr)}.testimonials-grid{grid-template-columns:1fr;max-width:520px;margin-inline:auto}}
+    @media(max-width:600px){section{padding-block:56px}.services-grid{grid-template-columns:1fr}.why-grid{grid-template-columns:1fr 1fr}.trust-items{gap:20px}.nav-phone{display:none}}
+    @media(prefers-reduced-motion:reduce){.scroll-hint,.btn-pulse::before,.why-orb{animation:none!important}}
+
+    /* ── custom cursor ─────────────────────────────────────────── */
+    @media(pointer:fine){
+      body{cursor:none}
+      a,button,.service-card,[role=button]{cursor:none}
+    }
+    #cursor-dot{position:fixed;top:0;left:0;width:8px;height:8px;background:#fff;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference;transition:width .2s,height .2s,opacity .2s;opacity:0}
+    #cursor-ring{position:fixed;top:0;left:0;width:36px;height:36px;border:1.5px solid rgba(255,255,255,.7);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);mix-blend-mode:difference;transition:opacity .3s;opacity:0}
+    body.cursor-ready #cursor-dot,body.cursor-ready #cursor-ring{opacity:1}
+
+    /* ── grain overlay ─────────────────────────────────────────── */
+    #grain{position:fixed;inset:0;pointer-events:none;z-index:9997;opacity:.042;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:256px 256px;animation:grainShift .5s steps(1) infinite}
+    @keyframes grainShift{0%{background-position:0 0}20%{background-position:-8% -12%}40%{background-position:12% -5%}60%{background-position:-5% 18%}80%{background-position:18% 8%}100%{background-position:-12% -8%}}
+    @media(prefers-reduced-motion:reduce){#grain{animation:none}}
+
+    /* ── char split reveals ────────────────────────────────────── */
+    .char-wrap{overflow:hidden;display:inline-block;vertical-align:bottom}
+    .char{display:inline-block;transform:translateY(112%)}
+
+    /* ── marquee trust bar ─────────────────────────────────────── */
+    .trust-bar{overflow:hidden;padding-block:0}
+    .trust-marquee-outer{display:flex;overflow:hidden;padding-block:28px}
+    .trust-marquee-track{display:flex;gap:52px;animation:marquee 28s linear infinite;white-space:nowrap;flex-shrink:0}
+    .trust-marquee-track .trust-item{flex-shrink:0}
+    @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    @media(prefers-reduced-motion:reduce){.trust-marquee-track{animation:none}}
+
+    /* ── watermark numbers ─────────────────────────────────────── */
+    .why-item{position:relative;overflow:hidden}
+    .why-watermark{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:120px;font-weight:900;color:rgba(255,255,255,.035);line-height:1;pointer-events:none;user-select:none;letter-spacing:-6px;z-index:0;white-space:nowrap}
+    .why-item>*:not(.why-watermark){position:relative;z-index:1}
+
+    /* ── magnetic button wrapper ───────────────────────────────── */
+    .magnetic{display:inline-block}
+  </style>
+</head>
+<body>
+
+  <div id="cursor-dot" aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
+  <div id="grain" aria-hidden="true"></div>
+  <div id="sp" aria-hidden="true"></div>
+
+  <div class="phone-strip">
+    Call us free: <a href="tel:9048822673"> (904) 882-2673</a>
+  </div>
+
+  <nav id="main-nav" aria-label="Main navigation">
+    <div class="container nav-inner">
+      <a href="#" class="nav-logo gsap-fade" aria-label="CJ2 Roofing home">
+        <div class="logo-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0F2240" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/>
+          </svg>
+        </div>
+        CJ2 Roofing
+      </a>
+      <div class="nav-cta">
+        <div class="nav-phone gsap-fade">
+          <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:2px">FREE ESTIMATE</div>
+          <strong> (904) 882-2673</strong>
+        </div>
+        <a href="#quote" class="btn btn-primary gsap-fade">Get Free Quote</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero-split" aria-labelledby="hero-heading" id="quote">
+
+    <!-- Left: content panel -->
+    <div class="hs-left">
+
+      <!-- Logo / business name -->
+      <header class="hs-header hs-anim">
+        <div class="logo-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0F2240" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/>
+          </svg>
+        </div>
+        <div>
+          <p class="hs-logo-text">CJ2 Roofing</p>
+          <p class="hs-slogan">Roofer &mdash; Jacksonville</p>
+        </div>
+      </header>
+
+      <!-- Main copy -->
+      <main class="hs-main">
+        <div class="hs-badge-wrap hs-anim">
+          <div class="hero-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+            Licensed & Insured · 5-Star Rated
+          </div>
+        </div>
+        <h1 id="hero-heading" class="hs-h1 hs-anim">Jacksonville's Roof Done Right, Guaranteed</h1>
+        <div class="hs-divider hs-div hs-anim" aria-hidden="true"></div>
+        <p class="hs-sub hs-p hs-anim">CJ2 Roofing keeps Jacksonville homes protected with honest pricing, clean jobsites, and craftsmanship that actually lasts. We treat every roof like it's our own.</p>
+        <a href="https://calendly.com/getfoundlocal12/website-strategy-call" target="_blank" rel="noopener" class="hs-cta hs-anim" aria-label="Book a free estimate call">
+          Get My Free Estimate
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </main>
+
+      <!-- Contact info footer -->
+      <footer class="hs-footer hs-anim" aria-label="Contact information">
+        <div class="hs-contact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          <span> (904) 882-2673</span>
+        </div>
+        <div class="hs-contact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0116 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>
+3938 Sunbeam Rd, Jacksonville, FL 32257</span>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Right: photo with clip-path reveal -->
+    <div class="hs-right" role="img" aria-label="CJ2 Roofing — Roofer" style="background-image:url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1920&q=85&auto=format&fit=crop')"></div>
+
+    <div class="scroll-hint" aria-hidden="true">
+      <span>Scroll</span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </div>
+  </section>
+
+  <div class="trust-bar" role="list" aria-label="Trust indicators">
+    <div class="trust-marquee-outer">
+      <div class="trust-marquee-track" aria-hidden="true">
+        <div class="trust-item gsap-fade" role="listitem">
+          <div class="trust-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          Licensed & insured roofing contractor in the state of Florida
+        </div>
+
+        <div class="trust-item gsap-fade" role="listitem">
+          <div class="trust-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+          </div>
+          Upfront written quotes — no hidden fees or surprise charges
+        </div>
+
+        <div class="trust-item gsap-fade" role="listitem">
+          <div class="trust-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+          </div>
+          GAF Certified installer with manufacturer-backed warranties
+        </div>
+
+        <div class="trust-item gsap-fade" role="listitem">
+          <div class="trust-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="20,6 9,17 4,12"/></svg>
+          </div>
+          Free insurance claim assistance for storm and wind damage
+        </div>
+
+        <div class="trust-item gsap-fade" role="listitem">
+          <div class="trust-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+          </div>
+          All work permitted and inspected to Jacksonville building code
+        </div>
+        <div class="trust-item gsap-fade" role="listitem">
+          <div class="trust-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          Licensed & insured roofing contractor in the state of Florida
+        </div>
+
+        <div class="trust-item gsap-fade" role="listitem">
+          <div class="trust-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+          </div>
+          Upfront written quotes — no hidden fees or surprise charges
+        </div>
+
+        <div class="trust-item gsap-fade" role="listitem">
+          <div class="trust-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+          </div>
+          GAF Certified installer with manufacturer-backed warranties
+        </div>
+
+        <div class="trust-item gsap-fade" role="listitem">
+          <div class="trust-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="20,6 9,17 4,12"/></svg>
+          </div>
+          Free insurance claim assistance for storm and wind damage
+        </div>
+
+        <div class="trust-item gsap-fade" role="listitem">
+          <div class="trust-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+          </div>
+          All work permitted and inspected to Jacksonville building code
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <section class="hiw" aria-labelledby="hiw-heading">
+    <div class="container">
+      <div class="section-header gsap-slide-up">
+        <div class="section-label">How It Works</div>
+        <span class="section-line" id="line-hiw"></span>
+        <h2 class="section-title split-heading" id="hiw-heading">New Roof Without the Runaround</h2>
+        <p class="section-sub">From first call to final cleanup, we make it simple and stress-free.</p>
+      </div>
+
+      <div class="hiw-grid">
+        <!-- Steps -->
+        <div class="hiw-steps" role="list" aria-label="Process steps">
+          
+        <div class="hiw-step gsap-slide-up">
+          <div class="hiw-step-num" aria-hidden="true">01</div>
+          <div class="hiw-step-body">
+            <h3>Get Your Free Roof Assessment</h3>
+            <p>Call or book online and we'll inspect your roof within 48 hours — no obligation, no sales pressure.</p>
+          </div>
+        </div>
+        <div class="hiw-step gsap-slide-up">
+          <div class="hiw-step-num" aria-hidden="true">02</div>
+          <div class="hiw-step-body">
+            <h3>Review Your Clear, Honest Quote</h3>
+            <p>We walk you through every detail, material option, and cost so you know exactly what you're paying for.</p>
+          </div>
+        </div>
+        <div class="hiw-step gsap-slide-up">
+          <div class="hiw-step-num" aria-hidden="true">03</div>
+          <div class="hiw-step-body">
+            <h3>Enjoy a Roof That Lasts</h3>
+            <p>Our crew handles everything from permits to final cleanup, leaving you with a warranted roof and total peace of mind.</p>
+          </div>
+        </div>
+        </div>
+
+        <!-- Right: card + benefits -->
+        <div class="hiw-right">
+          <!-- Dashboard mock card -->
+          <div class="hiw-card gsap-scale" aria-hidden="true">
+            <div class="hiw-card-label">Project Overview</div>
+            <div class="hiw-card-title">Your Project, Handled End-to-End</div>
+            <div class="hiw-card-stats">
+          <div class="hiw-stat">
+            <div class="hiw-stat-num">1,200+</div>
+            <div class="hiw-stat-label">Roofs Completed in Jacksonville</div>
+          </div>
+          <div class="hiw-stat">
+            <div class="hiw-stat-num">15+</div>
+            <div class="hiw-stat-label">Years of Experience</div>
+          </div>
+          <div class="hiw-stat">
+            <div class="hiw-stat-num">4.9★</div>
+            <div class="hiw-stat-label">Average Google Rating</div>
+          </div></div>
+            <div class="hiw-card-bar"><div class="hiw-card-fill" data-width="82%"></div></div>
+            <div class="hiw-card-bar-label"><span>Customer Satisfaction</span><span>98%</span></div>
+            <div class="hiw-card-tag">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+              Licensed &amp; Insured · Local Team
+            </div>
+          </div>
+
+          <!-- Benefits -->
+          <div class="hiw-benefits" role="list" aria-label="Key benefits">
+            
+        <div class="benefit-card gsap-scale">
+          <span class="benefit-icon" aria-hidden="true">⚡</span>
+          <h4>Fast Turnaround</h4>
+          <p>Most roof replacements completed in 1-3 days so your life isn't disrupted.</p>
+        </div>
+        <div class="benefit-card gsap-scale">
+          <span class="benefit-icon" aria-hidden="true">🛡️</span>
+          <h4>Warranty-Backed Work</h4>
+          <p>Manufacturer and workmanship warranties that protect your investment for years.</p>
+        </div>
+        <div class="benefit-card gsap-scale">
+          <span class="benefit-icon" aria-hidden="true">💰</span>
+          <h4>No Surprise Costs</h4>
+          <p>Your final bill matches your quote — period.</p>
+        </div>
+        <div class="benefit-card gsap-scale">
+          <span class="benefit-icon" aria-hidden="true">🧹</span>
+          <h4>Spotless Cleanup</h4>
+          <p>Magnetic nail sweeps and full debris removal so your property looks better than before.</p>
+        </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Micro CTA -->
+      <div class="hiw-cta-row">
+        <span class="magnetic">
+          <a href="https://calendly.com/getfoundlocal12/website-strategy-call" target="_blank" rel="noopener" class="btn btn-dark">
+            Get Free Quote
+          </a>
+        </span>
+        <span class="hiw-cta-note">No obligation &mdash; takes 30 seconds</span>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="services-heading" style="background:var(--gray-50)">
+    <div class="container">
+      <div class="section-header gsap-slide-up">
+        <div class="section-label">What We Do</div>
+        <span class="section-line" id="line-services"></span>
+        <h2 class="section-title split-heading" id="services-heading">Our Services</h2>
+        <p class="section-sub">Everything you need, handled by experienced local professionals.</p>
+      </div>
+      <div class="services-grid">
+        <article class="service-card gsap-scale">
+          <div class="service-icon" aria-hidden="true">🏠</div>
+          <h3>Full Roof Replacement</h3>
+          <p>Complete tear-off and re-roof using GAF or Owens Corning dimensional shingles with proper ice-and-water shield underlayment.</p>
+        </article>
+
+        <article class="service-card gsap-scale">
+          <div class="service-icon" aria-hidden="true">🔧</div>
+          <h3>Roof Leak Repair</h3>
+          <p>Targeted leak detection and repair including flashing replacement, pipe boot sealing, and damaged decking restoration.</p>
+        </article>
+
+        <article class="service-card gsap-scale">
+          <div class="service-icon" aria-hidden="true">🌀</div>
+          <h3>Storm Damage Restoration</h3>
+          <p>Hurricane and wind damage assessment with full insurance claim assistance and emergency tarping to prevent secondary water intrusion.</p>
+        </article>
+
+        <article class="service-card gsap-scale">
+          <div class="service-icon" aria-hidden="true">🏢</div>
+          <h3>Flat & Low-Slope Roofing</h3>
+          <p>TPO, modified bitumen, and silicone coating systems installed for commercial and residential flat roof applications.</p>
+        </article>
+
+        <article class="service-card gsap-scale">
+          <div class="service-icon" aria-hidden="true">💧</div>
+          <h3>Gutter Installation & Repair</h3>
+          <p>Seamless aluminum gutter installation with proper fascia board inspection and downspout routing for optimal drainage.</p>
+        </article>
+
+        <article class="service-card gsap-scale">
+          <div class="service-icon" aria-hidden="true">🔍</div>
+          <h3>Roof Inspections & Maintenance</h3>
+          <p>Comprehensive 25-point roof inspections covering ventilation, soffit condition, and shingle granule loss to catch problems early.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="why" aria-labelledby="why-heading">
+    <div class="why-orb" style="width:500px;height:500px;top:-100px;left:-100px;animation-delay:0s"></div>
+    <div class="why-orb" style="width:400px;height:400px;bottom:-50px;right:100px;animation-delay:-4s"></div>
+    <div class="container" style="position:relative;z-index:1">
+      <div class="section-header gsap-slide-up" style="max-width:560px">
+        <div class="section-label">By the Numbers</div>
+        <span class="section-line" id="line-why"></span>
+        <h2 class="section-title split-heading" id="why-heading">Why CJ2 Roofing</h2>
+        <p class="section-sub" style="color:rgba(255,255,255,.65)">Numbers that speak for themselves.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-item gsap-scale">
+          <div class="why-watermark" aria-hidden="true">1,200+</div>
+          <div class="why-number" data-target-text="1,200+">1,200+</div>
+          <h4>Roofs Completed in Jacksonville</h4>
+        </div>
+
+        <div class="why-item gsap-scale">
+          <div class="why-watermark" aria-hidden="true">15+</div>
+          <div class="why-number" data-target-text="15+">15+</div>
+          <h4>Years of Experience</h4>
+        </div>
+
+        <div class="why-item gsap-scale">
+          <div class="why-watermark" aria-hidden="true">4.9★</div>
+          <div class="why-number" data-target-text="4.9★">4.9★</div>
+          <h4>Average Google Rating</h4>
+        </div>
+
+        <div class="why-item gsap-scale">
+          <div class="why-watermark" aria-hidden="true">100%</div>
+          <div class="why-number" data-target-text="100%">100%</div>
+          <h4>Free Estimates, No Pressure</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials" aria-labelledby="testimonials-heading">
+    <div class="container">
+      <div class="section-header gsap-slide-up">
+        <div class="section-label">Reviews</div>
+        <span class="section-line" id="line-reviews"></span>
+        <h2 class="section-title split-heading" id="testimonials-heading">What Customers Say</h2>
+        <p class="section-sub">Real reviews from real neighbors.</p>
+      </div>
+      <div class="testimonials-grid"><div class="t-col ">
+          <div class="t-scroll">
+            <article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"Had a persistent leak around my chimney flashing that two other roofers couldn't fix. CJ2 found the real source, replaced the step flashing and counter flashing, and it's been bone dry through three storms since. Couldn't be happier."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">MT</div>
+            <div>
+              <div class="author-name">Marcus Thompson</div>
+              <div class="author-location">Mandarin</div>
+            </div>
+          </div>
+        </article>
+<article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"CJ2 replaced our entire roof in two days. They laid down synthetic underlayment, replaced all the rotted decking around the dormers, and left our yard cleaner than they found it. Price was exactly what they quoted."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">SR</div>
+            <div>
+              <div class="author-name">Sarah Rodriguez</div>
+              <div class="author-location">San Jose</div>
+            </div>
+          </div>
+        </article>
+<article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"After Hurricane season damaged our ridge caps and several shingles, CJ2 came out the next morning. They tarped everything to prevent water damage and had the full repair done within the week. True professionals."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">DW</div>
+            <div>
+              <div class="author-name">David Williams</div>
+              <div class="author-location">Baymeadows</div>
+            </div>
+          </div>
+        </article>
+            <article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"Had a persistent leak around my chimney flashing that two other roofers couldn't fix. CJ2 found the real source, replaced the step flashing and counter flashing, and it's been bone dry through three storms since. Couldn't be happier."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">MT</div>
+            <div>
+              <div class="author-name">Marcus Thompson</div>
+              <div class="author-location">Mandarin</div>
+            </div>
+          </div>
+        </article>
+<article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"CJ2 replaced our entire roof in two days. They laid down synthetic underlayment, replaced all the rotted decking around the dormers, and left our yard cleaner than they found it. Price was exactly what they quoted."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">SR</div>
+            <div>
+              <div class="author-name">Sarah Rodriguez</div>
+              <div class="author-location">San Jose</div>
+            </div>
+          </div>
+        </article>
+<article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"After Hurricane season damaged our ridge caps and several shingles, CJ2 came out the next morning. They tarped everything to prevent water damage and had the full repair done within the week. True professionals."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">DW</div>
+            <div>
+              <div class="author-name">David Williams</div>
+              <div class="author-location">Baymeadows</div>
+            </div>
+          </div>
+        </article>
+          </div>
+        </div><div class="t-col t-col-md">
+          <div class="t-scroll">
+            <article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"We got five quotes for our roof replacement and CJ2 wasn't the cheapest, but they were the most thorough. They explained every line item, used quality materials, and the crew was respectful and on time every day."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">JH</div>
+            <div>
+              <div class="author-name">Jennifer Harris</div>
+              <div class="author-location">Ponte Vedra Beach</div>
+            </div>
+          </div>
+        </article>
+<article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"My flat roof on a rental property had pooling water issues for years. CJ2 installed a TPO membrane with proper tapered insulation for drainage. No more ponding, and my energy bills actually dropped. Solid work."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">RP</div>
+            <div>
+              <div class="author-name">Robert Patterson</div>
+              <div class="author-location">Arlington</div>
+            </div>
+          </div>
+        </article>
+<article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"CJ2 did a full inspection before we closed on our house and found soft decking and improper attic ventilation the home inspector missed. They saved us from a very expensive surprise. I recommend them to everyone."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">KC</div>
+            <div>
+              <div class="author-name">Karen Chen</div>
+              <div class="author-location">Southside</div>
+            </div>
+          </div>
+        </article>
+            <article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"We got five quotes for our roof replacement and CJ2 wasn't the cheapest, but they were the most thorough. They explained every line item, used quality materials, and the crew was respectful and on time every day."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">JH</div>
+            <div>
+              <div class="author-name">Jennifer Harris</div>
+              <div class="author-location">Ponte Vedra Beach</div>
+            </div>
+          </div>
+        </article>
+<article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"My flat roof on a rental property had pooling water issues for years. CJ2 installed a TPO membrane with proper tapered insulation for drainage. No more ponding, and my energy bills actually dropped. Solid work."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">RP</div>
+            <div>
+              <div class="author-name">Robert Patterson</div>
+              <div class="author-location">Arlington</div>
+            </div>
+          </div>
+        </article>
+<article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"CJ2 did a full inspection before we closed on our house and found soft decking and improper attic ventilation the home inspector missed. They saved us from a very expensive surprise. I recommend them to everyone."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">KC</div>
+            <div>
+              <div class="author-name">Karen Chen</div>
+              <div class="author-location">Southside</div>
+            </div>
+          </div>
+        </article>
+          </div>
+        </div><div class="t-col t-col-lg">
+          <div class="t-scroll">
+            <article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"The team replaced 40 squares of architectural shingles on our two-story home in under three days. Drip edge, new vents, everything done to code. Our neighborhood HOA even complimented how it looks."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">BM</div>
+            <div>
+              <div class="author-name">Brian Mitchell</div>
+              <div class="author-location">Julington Creek</div>
+            </div>
+          </div>
+        </article>
+<article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"A massive oak branch punched through our roof during a storm. CJ2 handled the emergency tarp that night and worked directly with our insurance adjuster. They made the whole process painless from start to finish."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">AP</div>
+            <div>
+              <div class="author-name">Angela Price</div>
+              <div class="author-location">Riverside</div>
+            </div>
+          </div>
+        </article>
+<article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"Had CJ2 install seamless gutters and replace some wind-damaged soffit panels. They color-matched everything perfectly and the install was clean. Fair price, quick turnaround, and great communication throughout."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">TN</div>
+            <div>
+              <div class="author-name">Thomas Nguyen</div>
+              <div class="author-location">Nocatee</div>
+            </div>
+          </div>
+        </article>
+            <article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"The team replaced 40 squares of architectural shingles on our two-story home in under three days. Drip edge, new vents, everything done to code. Our neighborhood HOA even complimented how it looks."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">BM</div>
+            <div>
+              <div class="author-name">Brian Mitchell</div>
+              <div class="author-location">Julington Creek</div>
+            </div>
+          </div>
+        </article>
+<article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"A massive oak branch punched through our roof during a storm. CJ2 handled the emergency tarp that night and worked directly with our insurance adjuster. They made the whole process painless from start to finish."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">AP</div>
+            <div>
+              <div class="author-name">Angela Price</div>
+              <div class="author-location">Riverside</div>
+            </div>
+          </div>
+        </article>
+<article class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"Had CJ2 install seamless gutters and replace some wind-damaged soffit panels. They color-matched everything perfectly and the install was clean. Fair price, quick turnaround, and great communication throughout."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">TN</div>
+            <div>
+              <div class="author-name">Thomas Nguyen</div>
+              <div class="author-location">Nocatee</div>
+            </div>
+          </div>
+        </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta" aria-labelledby="cta-heading">
+    <div class="container">
+      <h2 id="cta-heading" class="gsap-slide-up">Ready to Get Started?</h2>
+      <p class="gsap-slide-up">Get a free, no-obligation estimate from CJ2 Roofing.</p>
+      <div class="cta-actions gsap-scale">
+        <span class="magnetic"><a href="#quote" class="btn btn-dark btn-lg">Book Free Estimate</a></span>
+        <span class="magnetic"><a href="tel:9048822673" class="btn btn-woutline btn-lg">Call  (904) 882-2673</a></span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-logo">CJ2 Roofing</div>
+      <div class="footer-links">
+        <a href="#">Services</a>
+        <a href="#">About</a>
+        <a href="#">Reviews</a>
+        <a href="tel:9048822673">Contact</a>
+      </div>
+      <div class="footer-copy">© 2026 CJ2 Roofing. All rights reserved.</div>
+      <div class="footer-claim">Site built by <a href="https://calendly.com/getfoundlocal12/website-strategy-call" target="_blank">Get Found Local</a> &mdash; <a href="https://calendly.com/getfoundlocal12/website-strategy-call" target="_blank">Claim this site</a></div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // ── Reduced motion check ───────────────────────────────────────────
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isMobile = window.innerWidth < 768;
+
+    // ── Lenis smooth scroll ────────────────────────────────────────────
+    const lenis = new Lenis({lerp: prefersReducedMotion ? 1 : 0.08, smoothWheel: !prefersReducedMotion});
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((t) => lenis.raf(t * 1000));
+    gsap.ticker.lagSmoothing(0);
+
+    // smooth-scroll anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        const target=document.querySelector(a.getAttribute('href'));
+        if(target){e.preventDefault();lenis.scrollTo(target,{duration:1.2,easing:t=>t<0.5?4*t*t*t:(t-1)*(2*t-2)*(2*t-2)+1});}
+      });
+    });
+
+    // ── Custom cursor ──────────────────────────────────────────────────
+    const dot = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    if(window.matchMedia('(pointer:fine)').matches && dot && ring){
+      let mx=window.innerWidth/2, my=window.innerHeight/2;
+      let rx=mx, ry=my;
+      document.addEventListener('mousemove', e=>{
+        mx=e.clientX; my=e.clientY;
+        document.body.classList.add('cursor-ready');
+        gsap.to(dot, {x:mx, y:my, duration:0.06, ease:'none'});
+      });
+      gsap.ticker.add(()=>{
+        rx += (mx - rx) * 0.13;
+        ry += (my - ry) * 0.13;
+        gsap.set(ring, {x:rx, y:ry});
+      });
+      document.querySelectorAll('a, button, .service-card, .testimonial-card').forEach(el=>{
+        const big = el.matches('.service-card,.testimonial-card');
+        el.addEventListener('mouseenter', ()=>gsap.to([dot,ring], {width:big?56:14, height:big?56:14, opacity:big?0.4:1, duration:.25, ease:'power2.out'}));
+        el.addEventListener('mouseleave', ()=>gsap.to([dot,ring], {width:[8,36], height:[8,36], opacity:[1,1], duration:.35, ease:'power3.out'}));
+      });
+    }
+
+    // ── Scroll progress bar (scaleX = composite only, no layout trigger) ─
+    const sp = document.getElementById('sp');
+    sp.style.transformOrigin = 'left center';
+    sp.style.width = '100%';
+    lenis.on('scroll', ({progress})=> { sp.style.transform = `scaleX(${progress})`; });
+
+    // ── Particles ─────────────────────────────────────────────────────
+    (function(){
+      const c = document.getElementById('particles');
+      for(let i=0;i<22;i++){
+        const p=document.createElement('div'); p.className='particle';
+        const sz=Math.random()*6+3;
+        p.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;bottom:${Math.random()*-20}%;animation-duration:${Math.random()*12+10}s;animation-delay:${Math.random()*-15}s`;
+        c.appendChild(p);
+      }
+    })();
+
+    // ── Nav scroll ────────────────────────────────────────────────────
+    lenis.on('scroll', ({scroll})=> document.getElementById('main-nav').classList.toggle('scrolled', scroll > 60));
+
+    // ── Char split utility ────────────────────────────────────────────
+    function splitChars(el){
+      const text = el.textContent;
+      el.innerHTML = text.split('').map(c=>{
+        if(c === ' ') return '<span style="display:inline-block;width:.28em"> </span>';
+        return `<span class="char-wrap"><span class="char">${c}</span></span>`;
+      }).join('');
+      return el.querySelectorAll('.char');
+    }
+
+    // ── Hero entrance (nav only — hero text uses CSS animations) ────────
+    const EASE = 'cubic-bezier(0.165,0.84,0.44,1)';
+    gsap.to('.nav-logo,.nav-phone,.nav-cta .btn', {opacity:1, duration:.5, stagger:.08, ease:'power2.out', delay:.1});
+
+    // ── Section headers: char-split headings + line draw ──────────────
+    document.querySelectorAll('.section-header').forEach(header=>{
+      const line    = header.querySelector('.section-line');
+      const heading = header.querySelector('.split-heading');
+      const sub     = header.querySelector('.section-sub');
+      const label   = header.querySelector('.section-label');
+      const htl = gsap.timeline({scrollTrigger:{trigger:header, start:'top 82%'}});
+      if(label)   htl.fromTo(label, {opacity:0, y:10}, {opacity:1, y:0, duration:.4, ease:'power2.out'});
+      if(line)    htl.fromTo(line,  {width:0},          {width:'64px', duration:.5, ease:'power3.out'}, '-=.1');
+      if(heading){ const chars=splitChars(heading); htl.to(chars, {y:'0%', duration:.65, stagger:.025, ease:EASE}, '-=.15');}
+      if(sub)     htl.fromTo(sub,   {opacity:0, y:16},  {opacity:1, y:0, duration:.5, ease:'power2.out'}, '-=.35');
+    });
+    gsap.utils.toArray('.section-header').forEach(el=>gsap.set(el,{opacity:1,y:0}));
+
+    // ── How It Works: steps stagger + card fill bar ──────────────────
+    document.querySelectorAll('.hiw-step').forEach((step,i)=>{
+      gsap.fromTo(step, {opacity:0, x:-32, immediateRender:false}, {opacity:1, x:0, duration:.6, ease:'power3.out',
+        delay:i*.12, scrollTrigger:{trigger:'.hiw-steps', start:'top 82%'}});
+    });
+    const hiwCard = document.querySelector('.hiw-card');
+    if(hiwCard){
+      gsap.fromTo(hiwCard, {opacity:0, y:28, scale:.96, immediateRender:false}, {opacity:1, y:0, scale:1, duration:.7, ease:'power3.out',
+        scrollTrigger:{trigger:hiwCard, start:'top 85%'}});
+    }
+    document.querySelectorAll('.benefit-card').forEach((card,i)=>{
+      gsap.fromTo(card, {opacity:0, y:20, immediateRender:false}, {opacity:1, y:0, duration:.5, ease:'power2.out',
+        delay:i*.08, scrollTrigger:{trigger:'.hiw-benefits', start:'top 85%'}});
+    });
+    // Animate the fill bar when it enters view
+    const fill = document.querySelector('.hiw-card-fill');
+    if(fill){
+      ScrollTrigger.create({trigger:fill, start:'top 85%', once:true,
+        onEnter:()=>{ fill.style.width = fill.dataset.width || '82%'; }});
+    }
+
+    // ── Service cards: alternating + multi-axis hover ─────────────────
+    document.querySelectorAll('.service-card').forEach((card,i)=>{
+      gsap.fromTo(card,
+        {opacity:0, x:i%2===0?-55:55, y:20, scale:.93, immediateRender:false},
+        {opacity:1, x:0, y:0, scale:1, duration:.65, ease:'power3.out',
+         delay:(i%3)*.07, scrollTrigger:{trigger:card, start:'top 87%'}}
+      );
+      card.addEventListener('mousemove', e=>{
+        const r=card.getBoundingClientRect();
+        const nx=(e.clientX-r.left)/r.width-.5;
+        const ny=(e.clientY-r.top)/r.height-.5;
+        gsap.to(card, {rotateY:nx*10, rotateX:-ny*10, x:nx*6, y:ny*4, scale:1.02, duration:.25, ease:'power1.out', transformPerspective:700});
+      });
+      card.addEventListener('mouseleave', ()=>gsap.to(card, {rotateY:0, rotateX:0, x:0, y:0, scale:1, duration:.55, ease:'elastic.out(1,.45)'}));
+    });
+
+    // ── Why: fade+translate ───────────────────────────────────────────
+    gsap.fromTo('.why', {opacity:0, y:30, immediateRender:false}, {opacity:1, y:0, ease:'power2.out', duration:.8, scrollTrigger:{trigger:'.why', start:'top 80%'}});
+    gsap.fromTo('.why-item', {opacity:0, scale:.9, immediateRender:false}, {opacity:1, scale:1, duration:.55, stagger:.1, ease:'back.out(1.5)', scrollTrigger:{trigger:'.why-grid', start:'top 78%'}});
+    document.querySelectorAll('.why-watermark').forEach((wm,i)=>{
+      gsap.fromTo(wm, {scale:.6, opacity:0, immediateRender:false}, {scale:1, opacity:1, duration:.9, delay:i*.1, ease:'power3.out',
+        scrollTrigger:{trigger:wm, start:'top 85%'}});
+    });
+
+    // ── Magnetic buttons ──────────────────────────────────────────────
+    document.querySelectorAll('.magnetic').forEach(wrap=>{
+      wrap.addEventListener('mousemove', e=>{
+        const r=wrap.getBoundingClientRect();
+        const x=(e.clientX - r.left - r.width/2) * .38;
+        const y=(e.clientY - r.top  - r.height/2) * .38;
+        gsap.to(wrap, {x, y, duration:.3, ease:'power2.out'});
+      });
+      wrap.addEventListener('mouseleave', ()=>gsap.to(wrap, {x:0, y:0, duration:.75, ease:'elastic.out(1,.4)'}));
+    });
+
+    // ── Final CTA ─────────────────────────────────────────────────────
+    const ctaTl = gsap.timeline({scrollTrigger:{trigger:'.final-cta', start:'top 80%'}});
+    ctaTl.fromTo('.final-cta h2', {opacity:0, y:30, immediateRender:false}, {opacity:1, y:0, duration:.6, ease:'power3.out'})
+         .fromTo('.final-cta p',  {opacity:0, y:20, immediateRender:false}, {opacity:1, y:0, duration:.5, ease:'power2.out'}, '-=.3')
+         .fromTo('.cta-actions',  {opacity:0, scale:.9, immediateRender:false}, {opacity:1, scale:1, duration:.5, ease:'back.out(1.4)'}, '-=.25');
+
+    // ── Footer ────────────────────────────────────────────────────────
+    gsap.fromTo('footer', {opacity:0, y:30, immediateRender:false}, {opacity:1, y:0, duration:.6, ease:'power3.out', scrollTrigger:{trigger:'footer', start:'top 92%'}});
+
+    // ── Scroll parallax layers (skip on reduced-motion; reduce on mobile) ─
+    if(!prefersReducedMotion) {
+      const px = isMobile ? 0.4 : 1.0; // scale down parallax intensity on mobile
+      gsap.to('.hs-right', {yPercent:12*px, ease:'none', scrollTrigger:{trigger:'.hero-split', start:'top top', end:'bottom top', scrub:1.5}});
+      gsap.to('.why-orb:first-child', {y:-100*px, ease:'none', scrollTrigger:{trigger:'.why', start:'top bottom', end:'bottom top', scrub:true}});
+      gsap.to('.why-orb:last-child',  {y:80*px,   ease:'none', scrollTrigger:{trigger:'.why', start:'top bottom', end:'bottom top', scrub:true}});
+      if(!isMobile) {
+        gsap.utils.toArray('.section-label').forEach(el => {
+          gsap.to(el, {y:-18, ease:'none', scrollTrigger:{trigger:el, start:'top bottom', end:'bottom top', scrub:2}});
+        });
+      }
+    }
+
+    // ── Hero cursor parallax (desktop pointer only) ───────────────────
+    if(!prefersReducedMotion && window.matchMedia('(pointer:fine)').matches){
+      const layers = [
+        { sel:'.hs-right',     xM: 14,  yM: 10 },
+        { sel:'#hero-heading', xM:-18,  yM:-12 },
+        { sel:'.hs-sub',       xM:-10,  yM:-6  },
+        { sel:'.hs-cta',       xM:-6,   yM:-4  },
+      ];
+      const setters = layers.map(l => {
+        const el = document.querySelector(l.sel);
+        if(!el) return null;
+        return { qx: gsap.quickTo(el,'x',{duration:.9,ease:'power2.out'}),
+                 qy: gsap.quickTo(el,'y',{duration:.9,ease:'power2.out'}), ...l };
+      }).filter(Boolean);
+
+      document.addEventListener('mousemove', e => {
+        const cx = (e.clientX / window.innerWidth  - 0.5);
+        const cy = (e.clientY / window.innerHeight - 0.5);
+        setters.forEach(s => { s.qx(cx * s.xM); s.qy(cy * s.yM); });
+      });
+
+      // Reset on mouse leave
+      document.addEventListener('mouseleave', () => {
+        setters.forEach(s => { s.qx(0); s.qy(0); });
+      });
+    }
+
+    // ── Dark section cursor spotlight ─────────────────────────────────
+    document.querySelectorAll('.why, .final-cta').forEach(section => {
+      section.addEventListener('mousemove', e => {
+        const r = section.getBoundingClientRect();
+        section.style.setProperty('--cx', ((e.clientX-r.left)/r.width *100).toFixed(1)+'%');
+        section.style.setProperty('--cy', ((e.clientY-r.top) /r.height*100).toFixed(1)+'%');
+      });
+    });
+
+    // ── Service card cursor glow ──────────────────────────────────────
+    document.querySelectorAll('.service-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', ((e.clientX-r.left)/r.width *100).toFixed(1)+'%');
+        card.style.setProperty('--my', ((e.clientY-r.top) /r.height*100).toFixed(1)+'%');
+      });
+    });
+
+    // ── Form submit ───────────────────────────────────────────────────
+    function handleSubmit(e){
+      e.preventDefault();
+      const btn=e.target.querySelector('button[type="submit"]');
+      btn.textContent='Sending...'; btn.disabled=true;
+      setTimeout(()=>{
+        btn.textContent='✓ Request Sent!';
+        btn.style.background='#16a34a'; btn.style.color='white';
+        gsap.from(btn, {scale:.92, duration:.35, ease:'back.out(2)'});
+      }, 1200);
+    }
+    window.handleSubmit = handleSubmit;
+  </script>
+</body>
+</html>
